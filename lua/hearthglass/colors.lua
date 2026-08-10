@@ -7,6 +7,18 @@
 -- different: the light variant uses Ember's light palette verbatim, while the
 -- dark variant re-tunes Ember's dark graphite toward a golden/amber identity
 -- with green and red reserved as context accents.
+--
+-- Readability tuning on top of the deepwhite contract:
+--   * dark ramp slots base3/base5/base6 are lifted so comments, visual
+--     selection, and the cursorline are clearly visible against the ash
+--     background;
+--   * the dark light_* syntax slabs are raised from near-invisible umber to
+--     clearly readable warm blocks;
+--   * dark syntax text (String/Constant/Statement) is nudged toward its
+--     slab's hue so categories read at a glance instead of all being one
+--     golden ivory;
+--   * colorblind-safe remaps replace the red/green meaning pair when
+--     options.colorblind is set (see apply_colorblind below).
 -- ============================================================================
 
 local M = {}
@@ -20,7 +32,7 @@ local M = {}
 local accents = {
   dark = {
     orange = '#e0893d',
-    yellow = '#d9b452',
+    yellow = '#e0bd58',
     cyan = '#6f9a8c',
     green = '#98a45c',
     blue = '#7d94ab',
@@ -48,10 +60,10 @@ local palettes = {
     base0 = '#e6d3a3', -- golden ivory foreground
     base1 = '#c7b48c', -- warm sand
     base2 = '#a99874', -- camel
-    base3 = '#8a7a5e', -- taupe (comments, line numbers)
+    base3 = '#94836a', -- taupe (comments, line numbers)
     base4 = '#6a5c46', -- umber
-    base5 = '#4f4434', -- warm charcoal (visual selection)
-    base6 = '#2f2821', -- deep umber (cursorline)
+    base5 = '#54452f', -- warm charcoal (visual selection)
+    base6 = '#3a322a', -- deep umber (cursorline)
     base7 = '#1b1612', -- hearth-ash background
   },
   light = {
@@ -85,18 +97,19 @@ local function blend(c1, c2, amount)
 end
 
 -- Deepwhite uses pastel light_* blocks for syntax categories. On the warm
--- umber background these are low-lightness, low-saturation umber slabs so the
--- blocks read as warm texture, not mud: each slab is a desaturated tint of its
--- accent hue, clearly darker than the golden foreground sitting on top of it.
+-- umber background these are low-lightness umber slabs so the blocks read as
+-- warm texture: each slab is a desaturated tint of its accent hue, lifted
+-- well above the background so the block itself is visible, and clearly
+-- darker than the tinted foreground sitting on top of it.
 local dark_tints = {
-  light_orange = '#3b2a1b', -- amber umber
-  light_yellow = '#3b321c', -- golden umber
-  light_cyan = '#24312b', -- sage umber
-  light_green = '#2f351e', -- olive umber
-  light_blue = '#26303a', -- steel umber
-  light_purple = '#342a30', -- mauve umber
-  light_pink = '#3b2a23', -- terracotta umber
-  light_red = '#3e231e', -- brick umber
+  light_orange = '#523823', -- amber umber
+  light_yellow = '#524625', -- golden umber
+  light_cyan = '#36473f', -- sage umber
+  light_green = '#414826', -- olive umber
+  light_blue = '#384a5a', -- steel umber
+  light_purple = '#4b3d4a', -- mauve umber
+  light_pink = '#523a2e', -- terracotta umber
+  light_red = '#573128', -- brick umber
 }
 
 local light_tint_strength = 0.18
@@ -120,6 +133,46 @@ function M.get_colors(variant, options)
   local kind = variant == 'hearthglass-light' and 'light' or 'dark'
   local palette = vim.tbl_extend('force', {}, palettes[kind])
   local color_accents = accents[kind]
+  local tints = dark_tints
+
+  -- Colorblind-safe remaps. The red/green pair is the only accent pair the
+  -- theme uses for meaning (diffs, diagnostics, success/error), so it is the
+  -- one that matters. 'protan' and 'deutan' share a remap: red shifts toward
+  -- rose and green toward teal, keeping both distinguishable for red-green
+  -- deficiencies (the blue component survives). 'tritan' moves blue toward
+  -- violet and cyan toward steel so they stop colliding with the gold family.
+  local cb = options.colorblind
+  if cb == true then
+    cb = 'deutan'
+  elseif cb == 'protan' then
+    cb = 'deutan'
+  end
+  if cb == 'deutan' or cb == 'tritan' then
+    color_accents = vim.tbl_extend('force', {}, color_accents)
+    tints = vim.tbl_extend('force', {}, tints)
+    if cb == 'deutan' then
+      if kind == 'dark' then
+        color_accents.red = '#d96a6f' -- rose (blue-leaning red)
+        color_accents.green = '#5f9c8b' -- teal (blue-leaning green)
+        color_accents.cyan = '#5f8098' -- steel, so cyan stays apart from teal
+        tints.light_green = '#33453c' -- teal umber
+        tints.light_red = '#4a3038' -- rose umber
+      else
+        color_accents.red = '#a84a5a'
+        color_accents.green = '#3f6e60'
+        color_accents.cyan = '#4a6a80'
+      end
+    else -- tritan
+      if kind == 'dark' then
+        color_accents.blue = '#8579ae' -- violet-leaning blue
+        color_accents.cyan = '#5f8098' -- steel
+        tints.light_blue = '#3a3448' -- violet umber
+      else
+        color_accents.blue = '#5c5690'
+        color_accents.cyan = '#4a6a80'
+      end
+    end
+  end
 
   for name, color in pairs(color_accents) do
     palette[name] = color
@@ -136,10 +189,25 @@ function M.get_colors(variant, options)
 
   for light_name, accent_name in pairs(tint_names) do
     if kind == 'dark' then
-      palette[light_name] = dark_tints[light_name]
+      palette[light_name] = tints[light_name]
     else
       palette[light_name] = blend(color_accents[accent_name], palette.base7, light_tint_strength)
     end
+  end
+
+  -- Dark-only readability tints for the deepwhite syntax blocks: the text
+  -- keeps its warm ivory family but is nudged toward the slab's hue so
+  -- String/Constant/Statement read at a glance instead of all being base0.
+  -- Derived from the (possibly remapped) accents, so colorblind modes flow
+  -- through automatically. Light keeps the faithful deepwhite base0 text.
+  if kind == 'dark' then
+    palette.syntax_string = blend(palette.base0, palette.green, 0.5)
+    palette.syntax_constant = blend(palette.base0, palette.yellow, 0.5)
+    palette.syntax_statement = blend(palette.base0, palette.orange, 0.45)
+  else
+    palette.syntax_string = palette.base0
+    palette.syntax_constant = palette.base0
+    palette.syntax_statement = palette.base0
   end
 
   return palette

@@ -5,6 +5,16 @@
 -- hearthglass palette. Group structure and links are identical to deepwhite;
 -- only the color sources changed. The two `bold = True` typos from the
 -- original (which silently evaluated to nil) are fixed to `bold = true`.
+--
+-- Deviations from the deepwhite colors, in service of readability:
+--   * Cursor, TermCursor and the search groups use the single vivid amber
+--     accent (ember's "one ember among ashes": coral handles cursor and
+--     search) instead of a muddy tan block or golden-on-golden slab;
+--   * CursorLineNr is gold and bold instead of plain Normal;
+--   * dark String/Constant/Statement text uses the hue-nudged ivory tints
+--     from the palette (light variant keeps deepwhite's base0 verbatim);
+--   * PmenuSel sits on base4 instead of base3 so menu text keeps contrast
+--     now that base3 was lifted for comments.
 -- ============================================================================
 
 local M = {}
@@ -20,12 +30,12 @@ function M.get_groups(c)
 
 		Title = { fg = c.base0, bold = true },
 
-		IncSearch = { fg = c.base0, bg = c.light_yellow },
+		IncSearch = { fg = c.base7, bg = c.orange },
 		Search = { link = "IncSearch" },
 		CurSearch = { link = "IncSearch" },
 
 		LineNr = { fg = c.base3 },
-		CursorLineNr = { link = "Normal" },
+		CursorLineNr = { fg = c.yellow, bold = true },
 
 		Question = { fg = c.base0, bold = true },
 
@@ -47,7 +57,7 @@ function M.get_groups(c)
 		SpellRare = { link = "SpellBad" },
 
 		Pmenu = { fg = c.base0, bg = c.base7 },
-		PmenuSel = { fg = c.base0, bg = c.base3 },
+		PmenuSel = { fg = c.base0, bg = c.base4 },
 		PmenuSbar = { bg = c.base0 },
 		PmenuThumb = { link = "PmenuSbar" },
 
@@ -55,7 +65,7 @@ function M.get_groups(c)
 		Visual = { bg = c.base5 },
 		Folded = {},
 
-		Cursor = { bg = c.base2 },
+		Cursor = { fg = c.base7, bg = c.orange },
 		TermCursor = { link = "Cursor" },
 		CursorLine = { bg = c.base6 },
 		CursorColumn = { link = "CursorLine" },
@@ -72,11 +82,11 @@ function M.get_groups(c)
 		DiffDelete = { fg = c.red },
 
 		Comment = { fg = c.base3 },
-		Constant = { fg = c.base0, bg = c.light_yellow }, -- String Character Number Boolean Float
-		String = { fg = c.base0, bg = c.light_green },
+		Constant = { fg = c.syntax_constant, bg = c.light_yellow }, -- String Character Number Boolean Float
+		String = { fg = c.syntax_string, bg = c.light_green },
 		Identifier = { fg = c.base0 },
 		Delimiter = { link = "Identifier" },
-		Statement = { fg = c.base0, bg = c.light_orange }, -- Conditional Repeat Label Operator Keyword Exception
+		Statement = { fg = c.syntax_statement, bg = c.light_orange }, -- Conditional Repeat Label Operator Keyword Exception
 		Operator = { link = "Identifier" },
 		PreProc = { link = "Question" }, -- Include Define Macro PreCondit
 		Type = { fg = c.yellow }, -- StorageClass Structure Typedef
@@ -87,7 +97,7 @@ function M.get_groups(c)
 		Error = { link = "ErrorMsg" },
 		Todo = { fg = c.green },
 
-		MatchParen = { fg = c.red, underline = true },
+		MatchParen = { fg = c.orange, underline = true },
 
 		-- Plugins
 		-- Lspsaga

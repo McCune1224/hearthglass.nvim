@@ -77,6 +77,35 @@ require('hearthglass').setup {
 }
 ```
 
+`low_blue_light` only affects the light variant: it lifts the parchment
+background toward white for a brighter "paper" feel.
+
+### Colorblind-friendly modes
+
+hearthglass uses exactly one accent pair for meaning — green for success
+(diffs, `DiagnosticOk`, `Todo`) and red for error (`DiagnosticError`,
+`DiffDelete`) — and that pair is the one most commonly confused. A
+colorblind-safe remap replaces it:
+
+```lua
+require('hearthglass').setup {
+  colorblind = 'deutan', -- or true, 'protan', 'tritan'
+}
+```
+
+- `deutan` / `protan` (red-green deficiency, the common case): red shifts
+  toward rose and green toward teal. Both keep enough blue component to stay
+  apart for deuteranopia and protanopia, and cyan moves to a darker steel so
+  it does not collide with the new teal. The olive and brick syntax slabs are
+  re-tinted to match.
+- `tritan` (blue-yellow deficiency): blue shifts toward violet and cyan
+  toward steel so they stop colliding with the gold/yellow family.
+- `true` is an alias for `'deutan'`.
+
+The remap applies to both the dark and light variants, survives
+`:HearthglassToggle` / `:HearthglassSync`, and the lualine themes follow it.
+Cursor and search keep their single amber accent in every mode.
+
 For lualine, use the matching theme explicitly:
 
 ```lua
