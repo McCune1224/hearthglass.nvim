@@ -4,9 +4,11 @@
 -- This is intentionally shaped like deepwhite.nvim's colors.lua:
 -- base0..base7, light_* syntax backgrounds, and the eight accent names.
 -- The scheme file consumes these names unchanged. Only the palette values are
--- different: the light variant uses Ember's light palette verbatim, while the
--- dark variant re-tunes Ember's dark graphite toward a golden/amber identity
--- with green and red reserved as context accents.
+-- different: the dark variant re-tunes Ember's dark graphite toward a
+-- golden/amber identity (gold-forward, with green and red reserved as context
+-- accents), while the light variant is orange-forward — its burnt orange and
+-- deeper gold keep the two warm accents from collapsing into the same brown
+-- on parchment.
 --
 -- Readability tuning on top of the deepwhite contract:
 --   * dark ramp slots base3/base5/base6 are lifted so comments, visual
@@ -29,6 +31,10 @@ local M = {}
 -- vivid as context signals (diffs, diagnostics, errors/success). The quiet
 -- supporting accents (cyan/blue/purple/pink) stay desaturated so only the
 -- golden pair and the two context colors carry visual weight.
+--
+-- The light variant is orange-forward: its orange is deepened to a burnt
+-- orange that clears the parchment at ~4.4:1, and yellow moves to a deeper
+-- gold so the two stop reading as the same brown on light backgrounds.
 local accents = {
   dark = {
     orange = '#e0893d',
@@ -41,8 +47,8 @@ local accents = {
     red = '#dd5c4a',
   },
   light = {
-    orange = '#946030',
-    yellow = '#7a6820',
+    orange = '#93491c',
+    yellow = '#8a6a1a',
     cyan = '#386858',
     green = '#4a6830',
     blue = '#3a6080',
@@ -208,6 +214,15 @@ function M.get_colors(variant, options)
     palette.syntax_string = palette.base0
     palette.syntax_constant = palette.base0
     palette.syntax_statement = palette.base0
+  end
+
+  -- Type follows the gold-on-dark / orange-on-light philosophy: gold reads
+  -- as the type hue against the umber background, while on parchment gold
+  -- washes out and orange carries the emphasis instead.
+  if kind == 'dark' then
+    palette.syntax_type = palette.yellow
+  else
+    palette.syntax_type = palette.orange
   end
 
   return palette

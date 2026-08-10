@@ -13,6 +13,10 @@
 --   * CursorLineNr is gold and bold instead of plain Normal;
 --   * dark String/Constant/Statement text uses the hue-nudged ivory tints
 --     from the palette (light variant keeps deepwhite's base0 verbatim);
+--   * Type is gold on dark and burnt orange on light (syntax_type), so the
+--     type hue never washes out against the background;
+--   * more of the accent family is in play: functions are steel blue, the
+--     preprocessor is terracotta pink, and diagnostic hints are cyan;
 --   * PmenuSel sits on base4 instead of base3 so menu text keeps contrast
 --     now that base3 was lifted for comments.
 -- ============================================================================
@@ -88,10 +92,10 @@ function M.get_groups(c)
 		Delimiter = { link = "Identifier" },
 		Statement = { fg = c.syntax_statement, bg = c.light_orange }, -- Conditional Repeat Label Operator Keyword Exception
 		Operator = { link = "Identifier" },
-		PreProc = { link = "Question" }, -- Include Define Macro PreCondit
-		Type = { fg = c.yellow }, -- StorageClass Structure Typedef
+		PreProc = { fg = c.pink }, -- Include Define Macro PreCondit
+		Type = { fg = c.syntax_type }, -- StorageClass Structure Typedef
 		Special = { link = "SpecialKey" }, -- SpecialChar Tag Delimiter SpecialComment Debug
-		Function = { link = "Identifier" },
+		Function = { fg = c.blue },
 		Underlined = { underline = true },
 		Ignore = { fg = c.base7 },
 		Error = { link = "ErrorMsg" },
@@ -213,7 +217,7 @@ function M.get_groups(c)
 
 		-- lsp
 		DiagnosticError = { fg = c.red },
-		DiagnosticHint = { fg = c.base3 },
+		DiagnosticHint = { fg = c.cyan },
 		DiagnosticInfo = { fg = c.blue },
 		DiagnosticOk = { fg = c.green },
 		DiagnosticUnderlineError = { sp = c.red, undercurl = true },
