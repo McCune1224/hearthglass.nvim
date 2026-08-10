@@ -72,14 +72,14 @@ function M.get_groups(c)
 		DiffDelete = { fg = c.red },
 
 		Comment = { fg = c.base3 },
-		Constant = { fg = c.base0, bg = c.light_blue }, -- String Character Number Boolean Float
+		Constant = { fg = c.base0, bg = c.light_yellow }, -- String Character Number Boolean Float
 		String = { fg = c.base0, bg = c.light_green },
 		Identifier = { fg = c.base0 },
 		Delimiter = { link = "Identifier" },
 		Statement = { fg = c.base0, bg = c.light_orange }, -- Conditional Repeat Label Operator Keyword Exception
 		Operator = { link = "Identifier" },
 		PreProc = { link = "Question" }, -- Include Define Macro PreCondit
-		Type = { fg = c.pink }, -- StorageClass Structure Typedef
+		Type = { fg = c.yellow }, -- StorageClass Structure Typedef
 		Special = { link = "SpecialKey" }, -- SpecialChar Tag Delimiter SpecialComment Debug
 		Function = { link = "Identifier" },
 		Underlined = { underline = true },
@@ -144,7 +144,7 @@ function M.get_groups(c)
 
 		["@keyword"] = { link = "Keyword" },
 		["@keyword.coroutine"] = { link = "Keyword" },
-		["@keyword.function"] = { bg = c.light_purple },
+		["@keyword.function"] = { bg = c.light_orange },
 		["@keyword.operator"] = { link = "Keyword" },
 		["@keyword.import"] = { link = "Include" },
 		["@keyword.storage"] = { link = "Keyword" },

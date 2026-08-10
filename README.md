@@ -1,10 +1,12 @@
 # hearthglass.nvim
 
-A deepwhite-inspired Neovim colorscheme using the Ember palette.
+A deepwhite-inspired Neovim colorscheme using the Ember palette as its base.
 
-Ember is a warm, hand-crafted theme built around graphite backgrounds, quiet
-olive/gold/steel accents, and one vivid coral ember. See the official Ember
-palette and design at [embertheme.com](https://embertheme.com/).
+The dark variant (`hearthglass`) is tuned for a warm hearth feel: golden ivory
+foregrounds over deep umber backgrounds, with amber/orange as the hero accent.
+Green and red are reserved as context signals — git diffs, diagnostics,
+success and error states. See the official Ember palette and design at
+[embertheme.com](https://embertheme.com/), which hearthglass starts from.
 
 The highlight structure is intentionally kept close to [deepwhite.nvim](https://github.com/Verf/deepwhite.nvim): syntax categories and key editor objects use deepwhite's distinctive highlighted blocks, while the palette comes from [ember-theme/nvim](https://github.com/ember-theme/nvim).
 

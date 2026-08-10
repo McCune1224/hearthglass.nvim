@@ -4,22 +4,29 @@
 -- This is intentionally shaped like deepwhite.nvim's colors.lua:
 -- base0..base7, light_* syntax backgrounds, and the eight accent names.
 -- The scheme file consumes these names unchanged. Only the palette values are
--- different, using Ember's dark and light palettes.
+-- different: the light variant uses Ember's light palette verbatim, while the
+-- dark variant re-tunes Ember's dark graphite toward a golden/amber identity
+-- with green and red reserved as context accents.
 -- ============================================================================
 
 local M = {}
 
--- Ember accents, retaining deepwhite's semantic names.
+-- Ember accents, retaining deepwhite's semantic names. The dark variant is
+-- tuned away from Ember's near-monochrome graphite toward a golden/amber
+-- identity: orange is the hero, yellow the gold, while green and red are kept
+-- vivid as context signals (diffs, diagnostics, errors/success). The quiet
+-- supporting accents (cyan/blue/purple/pink) stay desaturated so only the
+-- golden pair and the two context colors carry visual weight.
 local accents = {
   dark = {
-    orange = '#c09058',
-    yellow = '#c8b468',
-    cyan = '#80a090',
-    green = '#8a9868',
-    blue = '#7890a0',
-    purple = '#988090',
-    pink = '#b07878',
-    red = '#e08060',
+    orange = '#e0893d',
+    yellow = '#d9b452',
+    cyan = '#6f9a8c',
+    green = '#98a45c',
+    blue = '#7d94ab',
+    purple = '#a58e9c',
+    pink = '#c98f74',
+    red = '#dd5c4a',
   },
   light = {
     orange = '#946030',
@@ -38,14 +45,14 @@ local accents = {
 -- ramp; the light variant uses it in the same direction as deepwhite.
 local palettes = {
   dark = {
-    base0 = '#d8d0c0', -- ember fg
-    base1 = '#b8b0a0', -- ember base8
-    base2 = '#b0a898', -- ember fg_alt
-    base3 = '#908a7e', -- ember base7
-    base4 = '#706c61', -- ember base6
-    base5 = '#585550', -- ember base5
-    base6 = '#2e2d2a', -- ember base3
-    base7 = '#1c1b19', -- ember bg
+    base0 = '#e6d3a3', -- golden ivory foreground
+    base1 = '#c7b48c', -- warm sand
+    base2 = '#a99874', -- camel
+    base3 = '#8a7a5e', -- taupe (comments, line numbers)
+    base4 = '#6a5c46', -- umber
+    base5 = '#4f4434', -- warm charcoal (visual selection)
+    base6 = '#2f2821', -- deep umber (cursorline)
+    base7 = '#1b1612', -- hearth-ash background
   },
   light = {
     base0 = '#282418', -- ember fg
@@ -77,19 +84,19 @@ local function blend(c1, c2, amount)
   )
 end
 
--- Deepwhite uses pastel light_* blocks for syntax categories. On a dark
--- graphite background, blending Ember's warm accents directly produces muddy
--- brown slabs. Use quiet, cool Ember-adjacent graphite surfaces instead:
--- coral remains the one vivid spark, while steel/sage carry cool structure.
+-- Deepwhite uses pastel light_* blocks for syntax categories. On the warm
+-- umber background these are low-lightness, low-saturation umber slabs so the
+-- blocks read as warm texture, not mud: each slab is a desaturated tint of its
+-- accent hue, clearly darker than the golden foreground sitting on top of it.
 local dark_tints = {
-  light_orange = '#34302b', -- warm graphite, not orange-brown
-  light_yellow = '#35342b', -- muted gold/olive graphite
-  light_cyan = '#293332', -- sage/steel graphite
-  light_green = '#2e352c', -- olive graphite
-  light_blue = '#2b3238', -- steel graphite
-  light_purple = '#332d36', -- mauve graphite
-  light_pink = '#382d32', -- rose graphite
-  light_red = '#3b2d2b', -- restrained coral graphite
+  light_orange = '#3b2a1b', -- amber umber
+  light_yellow = '#3b321c', -- golden umber
+  light_cyan = '#24312b', -- sage umber
+  light_green = '#2f351e', -- olive umber
+  light_blue = '#26303a', -- steel umber
+  light_purple = '#342a30', -- mauve umber
+  light_pink = '#3b2a23', -- terracotta umber
+  light_red = '#3e231e', -- brick umber
 }
 
 local light_tint_strength = 0.18
