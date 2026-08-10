@@ -18,13 +18,23 @@ The highlight structure is intentionally kept close to [deepwhite.nvim](https://
 
 - `hearthglass` — dark Ember palette
 - `hearthglass-light` — light Ember palette
-- `hearthglass-auto` — chooses from `background`
+- `hearthglass-auto` — follows the desktop theme when KDE or GNOME settings are available, then falls back to `background`
 
 Toggle the active variant with:
 
 ```vim
 :HearthglassToggle
 ```
+
+Refresh from the current system preference after changing the desktop theme:
+
+```vim
+:HearthglassSync
+```
+
+On KDE, Hearthglass reads the `ColorScheme` value from `kdeglobals`. On
+GNOME-compatible desktops, it reads `org.gnome.desktop.interface color-scheme`
+through `gsettings`.
 
 The same toggle is available from Lua:
 
