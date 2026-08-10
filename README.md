@@ -1,0 +1,86 @@
+# hearthglass.nvim
+
+A deepwhite-inspired Neovim colorscheme using the Ember palette.
+
+Ember is a warm, hand-crafted theme built around graphite backgrounds, quiet
+olive/gold/steel accents, and one vivid coral ember. See the official Ember
+palette and design at [embertheme.com](https://embertheme.com/).
+
+The highlight structure is intentionally kept close to [deepwhite.nvim](https://github.com/Verf/deepwhite.nvim): syntax categories and key editor objects use deepwhite's distinctive highlighted blocks, while the palette comes from [ember-theme/nvim](https://github.com/ember-theme/nvim).
+
+## Variants
+
+```vim
+:colorscheme hearthglass
+:colorscheme hearthglass-light
+:colorscheme hearthglass-auto
+```
+
+- `hearthglass` — dark Ember palette
+- `hearthglass-light` — light Ember palette
+- `hearthglass-auto` — chooses from `background`
+
+Toggle the active variant with:
+
+```vim
+:HearthglassToggle
+```
+
+The same toggle is available from Lua:
+
+```lua
+require('hearthglass').toggle()
+```
+
+## Installation
+
+### vim.pack
+
+```lua
+vim.pack.add {
+  'https://github.com/McCune1224/hearthglass.nvim',
+}
+
+vim.cmd.colorscheme 'hearthglass'
+```
+
+### lazy.nvim
+
+```lua
+{
+  'McCune1224/hearthglass.nvim',
+  lazy = false,
+  priority = 1000,
+  config = function()
+    vim.cmd.colorscheme 'hearthglass'
+  end,
+}
+```
+
+## Configuration
+
+```lua
+require('hearthglass').setup {
+  low_blue_light = true,
+}
+```
+
+For lualine, use the matching theme explicitly:
+
+```lua
+require('lualine').setup {
+  options = {
+    theme = 'hearthglass',
+  },
+}
+```
+
+The repository also includes `hearthglass-light` under `lua/lualine/themes/`.
+
+## Attribution
+
+The highlight-group organization and visual structure are derived from
+[Verf/deepwhite.nvim](https://github.com/Verf/deepwhite.nvim), released under
+the MIT License. The palette direction is based on the official Ember theme
+website at [embertheme.com](https://embertheme.com/) and its Neovim
+implementation at [ember-theme/nvim](https://github.com/ember-theme/nvim).
