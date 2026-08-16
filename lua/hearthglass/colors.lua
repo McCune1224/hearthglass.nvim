@@ -79,8 +79,8 @@ local palettes = {
     base3 = '#605848', -- ember base7
     base4 = '#787060', -- ember base6
     base5 = '#989080', -- ember base5
-    base6 = '#ddd0b8', -- ember bg_alt
-    base7 = '#e6dac4', -- ember bg
+    base6 = '#e9e3d7', -- ember bg_alt
+    base7 = '#f5f0e6', -- ember bg
   },
 }
 

@@ -123,6 +123,69 @@ require('lualine').setup {
 
 The repository also includes `hearthglass-light` under `lua/lualine/themes/`.
 
+## Terminal (kitty)
+
+The same Ember palette is available as a kitty terminal theme, with matching
+day and night modes. The shipped confs are `kitty/hearthglass.conf` (night) and
+`kitty/hearthglass-light.conf` (day). They're generated from the palette by
+`kitty/hearthglass.py`, which honors the same `low_blue_light` and
+`colorblind` options as the colorscheme.
+
+Note: `kitty/hearthglass.py` is a plain script — run it with `python3`, not as a
+`kitten` subcommand. This kitty only ships its builtin kittens. The script
+delegates all theme changes to the `kitten` CLI tool.
+
+### Switch with `kitten themes` (recommended)
+
+Install the confs so the `kitten themes` CLI can find them:
+
+```sh
+python3 kitty/hearthglass.py install    # copies both confs into ~/.config/kitty/themes
+```
+
+Then switch through the kitten CLI:
+
+```sh
+kitten themes                    # interactive picker (choose hearthglass / -light)
+kitten themes hearthglass        # switch to dark
+kitten themes hearthglass-light  # switch to light
+```
+
+### Apply live (day / night / toggle)
+
+For a non-persistent switch on the running kitty, use `kitten @ set-colors`.
+The script wraps it (it needs kitty remote control enabled in `kitty.conf`):
+
+```sh
+allow_remote_control yes
+listen_on unix:/tmp/kitty
+```
+
+```sh
+python3 kitty/hearthglass.py night      # dark terminal theme
+python3 kitty/hearthglass.py day        # light terminal theme
+python3 kitty/hearthglass.py toggle     # switch based on the current background
+```
+
+Or call the kitten CLI directly:
+
+```sh
+kitten @ set-colors kitty/hearthglass.conf
+```
+
+Each script command honors the same options as the colorscheme:
+
+```sh
+python3 kitty/hearthglass.py day --low-blue-light
+python3 kitty/hearthglass.py night --colorblind deutan
+```
+
+Regenerate the conf files from the palette (after changing options) with:
+
+```sh
+python3 kitty/hearthglass.py build kitty
+```
+
 ## Attribution
 
 The highlight-group organization and visual structure are derived from
