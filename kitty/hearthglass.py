@@ -76,8 +76,8 @@ PALETTES = {
         "base3": "#605848",
         "base4": "#787060",
         "base5": "#989080",
-        "base6": "#ddd0b8",
-        "base7": "#e6dac4",
+        "base6": "#e9e3d7",
+        "base7": "#f5f0e6",
     },
 }
 

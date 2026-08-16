@@ -5,10 +5,8 @@
 </p>
 
 <p align="center">
-  A warm, Ember-inspired Neovim colorscheme for the glow between dark and light.
+  A warm Neovim colorscheme for the glow between dark and light.
 </p>
-
-A deepwhite-inspired Neovim colorscheme using the Ember palette as its base.
 
 The dark variant (`hearthglass`) is tuned for a warm hearth feel: golden ivory
 foregrounds over deep umber backgrounds, with amber/orange as the hero accent
@@ -17,11 +15,7 @@ diagnostics, success and error states. The light variant is orange-forward: a
 burnt orange hero that clears the parchment, so the gold family never washes
 out against the light background. Functions run steel blue and the
 preprocessor terracotta in both variants, so the accent family stays in play
-instead of collapsing into one warm monochrome. See the official Ember palette
-and design at [embertheme.com](https://embertheme.com/), which hearthglass
-starts from.
-
-The highlight structure is intentionally kept close to [deepwhite.nvim](https://github.com/Verf/deepwhite.nvim): syntax categories and key editor objects use deepwhite's distinctive highlighted blocks, while the palette comes from [ember-theme/nvim](https://github.com/ember-theme/nvim).
+instead of collapsing into one warm monochrome.
 
 ## Variants
 
@@ -31,8 +25,8 @@ The highlight structure is intentionally kept close to [deepwhite.nvim](https://
 :colorscheme hearthglass-auto
 ```
 
-- `hearthglass` — dark Ember palette
-- `hearthglass-light` — light Ember palette
+- `hearthglass` — dark warm palette
+- `hearthglass-light` — light warm palette
 - `hearthglass-auto` — follows the desktop theme when KDE or GNOME settings are available, then falls back to `background`
 
 Toggle the active variant with:
@@ -133,7 +127,7 @@ The repository also includes `hearthglass-light` under `lua/lualine/themes/`.
 
 ## Terminal (kitty)
 
-The same Ember palette is available as a kitty terminal theme, with matching
+The same palette is available as a kitty terminal theme, with matching
 day and night modes. The shipped confs are `kitty/hearthglass.conf` (night) and
 `kitty/hearthglass-light.conf` (day). They're generated from the palette by
 `kitty/hearthglass.py`, which honors the same `low_blue_light` and
@@ -194,10 +188,12 @@ Regenerate the conf files from the palette (after changing options) with:
 python3 kitty/hearthglass.py build kitty
 ```
 
-## Attribution
+## Inspirations
 
-The highlight-group organization and visual structure are derived from
-[Verf/deepwhite.nvim](https://github.com/Verf/deepwhite.nvim), released under
-the MIT License. The palette direction is based on the official Ember theme
-website at [embertheme.com](https://embertheme.com/) and its Neovim
-implementation at [ember-theme/nvim](https://github.com/ember-theme/nvim).
+hearthglass draws on two existing projects:
+
+- [deepwhite.nvim](https://github.com/Verf/deepwhite.nvim) — the
+  highlight-group organization and visual structure (MIT License)
+- [Ember](https://embertheme.com/) and its Neovim port at
+  [ember-theme/nvim](https://github.com/ember-theme/nvim) — the palette
+  direction
