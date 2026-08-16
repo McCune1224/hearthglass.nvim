@@ -1,5 +1,13 @@
 # hearthglass.nvim
 
+<p align="center">
+  <img src="assets/hearthglass-wordmark-transparent.png" alt="hearthglass logo" width="820">
+</p>
+
+<p align="center">
+  A warm, Ember-inspired Neovim colorscheme for the glow between dark and light.
+</p>
+
 A deepwhite-inspired Neovim colorscheme using the Ember palette as its base.
 
 The dark variant (`hearthglass`) is tuned for a warm hearth feel: golden ivory
