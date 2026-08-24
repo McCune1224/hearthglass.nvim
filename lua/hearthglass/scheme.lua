@@ -46,6 +46,12 @@ function M.get_groups(c)
 		StatusLine = { fg = c.base0, bg = c.base7, bold = true },
 		StatusLineNC = { fg = c.base0, bg = c.base7 },
 
+		-- WinBar must be defined or Neovim's default kicks in: a near-white
+		-- background (NvimLightGrey1) that shows as a bright banner behind any
+		-- lualine winbar whose components don't paint the full width.
+		WinBar = { fg = c.base0, bg = c.base7, bold = true },
+		WinBarNC = { fg = c.base0, bg = c.base7 },
+
 		TabLine = { link = "Normal" },
 		TabLineSel = { reverse = true },
 
