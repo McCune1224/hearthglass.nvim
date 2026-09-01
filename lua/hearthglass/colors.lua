@@ -5,56 +5,54 @@
 -- base0..base7, light_* syntax backgrounds, and the eight accent names.
 -- The scheme file consumes these names unchanged. Only the palette values are
 -- different: the dark variant re-tunes Ember's dark graphite toward a
--- golden/amber identity (gold-forward, with green and red reserved as context
--- accents), while the light variant is orange-forward — its burnt orange and
--- deeper gold keep the two warm accents from collapsing into the same brown
--- on parchment.
+-- gruvboxy warmth (earthy brown backgrounds, muted yellow, orange as the
+-- hero accent), while the light variant is orange-forward on parchment.
 --
 -- Readability tuning on top of the deepwhite contract:
 --   * dark ramp slots base3/base5/base6 are lifted so comments, visual
---     selection, and the cursorline are clearly visible against the ash
+--     selection, and the cursorline are clearly visible against the warm
 --     background;
 --   * the dark light_* syntax slabs are raised from near-invisible umber to
 --     clearly readable warm blocks;
 --   * dark syntax text (String/Constant/Statement) is nudged toward its
 --     slab's hue so categories read at a glance instead of all being one
---     golden ivory;
+--     warm ivory;
 --   * colorblind-safe remaps replace the red/green meaning pair when
 --     options.colorblind is set (see apply_colorblind below).
 -- ============================================================================
 
 local M = {}
 
--- Ember accents, retaining deepwhite's semantic names. The dark variant is
--- tuned away from Ember's near-monochrome graphite toward a golden/amber
--- identity: orange is the hero, yellow the gold, while green and red are kept
--- vivid as context signals (diffs, diagnostics, errors/success). The quiet
--- supporting accents (cyan/blue/purple/pink) stay desaturated so only the
--- golden pair and the two context colors carry visual weight.
+-- Accent colors, retaining deepwhite's semantic names. The dark variant leans
+-- into gruvboxy warmth: earthy brown backgrounds, orange as the hero accent,
+-- and a deliberately muted yellow that stays in the background. Green and red
+-- remain vivid as context signals (diffs, diagnostics, errors/success). The
+-- quiet supporting accents (cyan/blue/purple/pink) stay desaturated so only
+-- the orange and the two context colors carry visual weight.
 --
 -- The light variant is orange-forward: its orange is deepened to a burnt
--- orange that clears the parchment at ~4.4:1, and yellow moves to a deeper
--- gold so the two stop reading as the same brown on light backgrounds.
+-- orange that clears the parchment, and yellow is kept muted so the two
+-- accents never compete for attention on light backgrounds.
 local accents = {
   dark = {
-    orange = '#e0893d',
-    yellow = '#e0bd58',
-    cyan = '#6f9a8c',
-    green = '#98a45c',
-    blue = '#7d94ab',
-    purple = '#a58e9c',
-    pink = '#c98f74',
-    red = '#dd5c4a',
+    orange = '#d77c3a',
+    yellow = '#b8a04a',
+    cyan = '#6b9480',
+    green = '#8a9a50',
+    blue = '#7894a8',
+    purple = '#a0889a',
+    pink = '#c48870',
+    red = '#d85848',
   },
   light = {
-    orange = '#93491c',
-    yellow = '#8a6a1a',
-    cyan = '#386858',
-    green = '#4a6830',
-    blue = '#3a6080',
-    purple = '#706070',
-    pink = '#905050',
-    red = '#b84c30',
+    orange = '#8a4820',
+    yellow = '#7a6020',
+    cyan = '#356050',
+    green = '#486230',
+    blue = '#385a78',
+    purple = '#685868',
+    pink = '#884848',
+    red = '#b04830',
   },
 }
 
@@ -63,24 +61,24 @@ local accents = {
 -- ramp; the light variant uses it in the same direction as deepwhite.
 local palettes = {
   dark = {
-    base0 = '#e6d3a3', -- golden ivory foreground
-    base1 = '#c7b48c', -- warm sand
-    base2 = '#a99874', -- camel
-    base3 = '#94836a', -- taupe (comments, line numbers)
-    base4 = '#6a5c46', -- umber
-    base5 = '#54452f', -- warm charcoal (visual selection)
-    base6 = '#3a322a', -- deep umber (cursorline)
-    base7 = '#1b1612', -- hearth-ash background
+    base0 = '#e0cc98', -- warm ivory foreground
+    base1 = '#c4b088', -- warm sand
+    base2 = '#a89878', -- warm camel
+    base3 = '#8a7a68', -- warm taupe (comments, line numbers)
+    base4 = '#605240', -- warm umber
+    base5 = '#4a3e30', -- warm charcoal (visual selection)
+    base6 = '#342c24', -- deep warm umber (cursorline)
+    base7 = '#1e1814', -- warm dark background
   },
   light = {
-    base0 = '#282418', -- ember fg
-    base1 = '#484030', -- ember base8
-    base2 = '#585040', -- ember fg_alt
-    base3 = '#605848', -- ember base7
-    base4 = '#787060', -- ember base6
-    base5 = '#989080', -- ember base5
-    base6 = '#e9e3d7', -- ember bg_alt
-    base7 = '#f5f0e6', -- ember bg
+    base0 = '#2a2218', -- warm dark foreground
+    base1 = '#4a4230', -- warm dark alt
+    base2 = '#5a5240', -- warm mid-dark
+    base3 = '#625a4a', -- warm mid
+    base4 = '#7a7262', -- warm light-mid
+    base5 = '#989080', -- warm light
+    base6 = '#e8e0d4', -- warm parchment alt
+    base7 = '#f2eae0', -- warm parchment background
   },
 }
 
@@ -108,14 +106,14 @@ end
 -- well above the background so the block itself is visible, and clearly
 -- darker than the tinted foreground sitting on top of it.
 local dark_tints = {
-  light_orange = '#523823', -- amber umber
-  light_yellow = '#524625', -- golden umber
-  light_cyan = '#36473f', -- sage umber
-  light_green = '#414826', -- olive umber
-  light_blue = '#384a5a', -- steel umber
-  light_purple = '#4b3d4a', -- mauve umber
-  light_pink = '#523a2e', -- terracotta umber
-  light_red = '#573128', -- brick umber
+  light_orange = '#4a3528', -- burnt umber
+  light_yellow = '#443a28', -- muted brown umber
+  light_cyan = '#344438', -- sage umber
+  light_green = '#3a4228', -- olive umber
+  light_blue = '#364858', -- steel umber
+  light_purple = '#443844', -- mauve umber
+  light_pink = '#4a3428', -- terracotta umber
+  light_red = '#503028', -- brick umber
 }
 
 local light_tint_strength = 0.18
