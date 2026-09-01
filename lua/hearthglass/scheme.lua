@@ -96,7 +96,7 @@ function M.get_groups(c)
 		String = { fg = c.syntax_string, bg = c.light_green },
 		Identifier = { fg = c.base0 },
 		Delimiter = { link = "Identifier" },
-		Statement = { fg = c.syntax_statement, bg = c.light_orange }, -- Conditional Repeat Label Operator Keyword Exception
+		Statement = { fg = c.syntax_statement, bg = c.light_rose }, -- Conditional Repeat Label Operator Keyword Exception
 		Operator = { link = "Identifier" },
 		PreProc = { fg = c.pink }, -- Include Define Macro PreCondit
 		Type = { fg = c.syntax_type }, -- StorageClass Structure Typedef
@@ -164,7 +164,7 @@ function M.get_groups(c)
 
 		["@keyword"] = { link = "Keyword" },
 		["@keyword.coroutine"] = { link = "Keyword" },
-		["@keyword.function"] = { bg = c.light_orange },
+		["@keyword.function"] = { bg = c.light_rose },
 		["@keyword.operator"] = { link = "Keyword" },
 		["@keyword.import"] = { link = "Include" },
 		["@keyword.storage"] = { link = "Keyword" },
@@ -307,7 +307,7 @@ function M.get_groups(c)
 		CmpItemKindSnippet = { fg = c.base2 },
 		CmpItemKindConstant = { fg = c.blue },
 		CmpItemKindVariable = { fg = c.blue },
-		CmpItemKindKeyword = { fg = c.orange },
+		CmpItemKindKeyword = { fg = c.rose },
 		CmpItemKindMethod = { fg = c.purple },
 		CmpItemKindFunction = { link = "CmpItemKindMethod" },
 		CmpItemKindConstructor = { link = "CmpItemKindMethod" },

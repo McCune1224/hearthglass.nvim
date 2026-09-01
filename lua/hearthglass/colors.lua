@@ -24,34 +24,37 @@
 local M = {}
 
 -- Accent colors, retaining deepwhite's semantic names. The dark variant leans
--- into gruvboxy warmth: earthy brown backgrounds, orange as the hero accent,
--- and a deliberately muted yellow that stays in the background. Green and red
--- remain vivid as context signals (diffs, diagnostics, errors/success). The
--- quiet supporting accents (cyan/blue/purple/pink) stay desaturated so only
--- the orange and the two context colors carry visual weight.
+-- into gruvboxy warmth: earthy brown backgrounds, orange as the hero accent
+-- for UI highlights (cursor, search, warnings), and a clean gold for types
+-- and constants. Rose carries keyword syntax, giving it a cooler tone that
+-- separates keywords from the orange UI signals. Green and red remain vivid
+-- as context signals (diffs, diagnostics, errors/success). The quiet
+-- supporting accents (cyan/blue/purple/pink) stay desaturated.
 --
 -- The light variant is orange-forward: its orange is deepened to a burnt
--- orange that clears the parchment, and yellow is kept muted so the two
--- accents never compete for attention on light backgrounds.
+-- orange that clears the parchment, and gold is kept warm so types and
+-- constants read clearly on parchment.
 local accents = {
   dark = {
     orange = '#d77c3a',
-    yellow = '#b8a04a',
+    yellow = '#d4a840',
     cyan = '#6b9480',
     green = '#8a9a50',
     blue = '#7894a8',
     purple = '#a0889a',
     pink = '#c48870',
+    rose = '#c08088',
     red = '#d85848',
   },
   light = {
     orange = '#8a4820',
-    yellow = '#7a6020',
+    yellow = '#907830',
     cyan = '#356050',
     green = '#486230',
     blue = '#385a78',
     purple = '#685868',
     pink = '#884848',
+    rose = '#906068',
     red = '#b04830',
   },
 }
@@ -107,12 +110,13 @@ end
 -- darker than the tinted foreground sitting on top of it.
 local dark_tints = {
   light_orange = '#4a3528', -- burnt umber
-  light_yellow = '#443a28', -- muted brown umber
+  light_yellow = '#4a3e20', -- gold umber
   light_cyan = '#344438', -- sage umber
   light_green = '#3a4228', -- olive umber
   light_blue = '#364858', -- steel umber
   light_purple = '#443844', -- mauve umber
   light_pink = '#4a3428', -- terracotta umber
+  light_rose = '#443038', -- rose umber
   light_red = '#503028', -- brick umber
 }
 
@@ -126,6 +130,7 @@ local tint_names = {
   light_blue = 'blue',
   light_purple = 'purple',
   light_pink = 'pink',
+  light_rose = 'rose',
   light_red = 'red',
 }
 
@@ -207,7 +212,7 @@ function M.get_colors(variant, options)
   if kind == 'dark' then
     palette.syntax_string = blend(palette.base0, palette.green, 0.5)
     palette.syntax_constant = blend(palette.base0, palette.yellow, 0.5)
-    palette.syntax_statement = blend(palette.base0, palette.orange, 0.45)
+    palette.syntax_statement = blend(palette.base0, palette.rose, 0.45)
   else
     palette.syntax_string = palette.base0
     palette.syntax_constant = palette.base0

@@ -38,22 +38,24 @@ import subprocess
 ACCENTS = {
     "dark": {
         "orange": "#d77c3a",
-        "yellow": "#b8a04a",
+        "yellow": "#d4a840",
         "cyan": "#6b9480",
         "green": "#8a9a50",
         "blue": "#7894a8",
         "purple": "#a0889a",
         "pink": "#c48870",
+        "rose": "#c08088",
         "red": "#d85848",
     },
     "light": {
         "orange": "#8a4820",
-        "yellow": "#7a6020",
+        "yellow": "#907830",
         "cyan": "#356050",
         "green": "#486230",
         "blue": "#385a78",
         "purple": "#685868",
         "pink": "#884848",
+        "rose": "#906068",
         "red": "#b04830",
     },
 }
@@ -83,12 +85,13 @@ PALETTES = {
 
 DARK_TINTS = {
     "light_orange": "#4a3528",
-    "light_yellow": "#443a28",
+    "light_yellow": "#4a3e20",
     "light_cyan": "#344438",
     "light_green": "#3a4228",
     "light_blue": "#364858",
     "light_purple": "#443844",
     "light_pink": "#4a3428",
+    "light_rose": "#443038",
     "light_red": "#503028",
 }
 
@@ -153,6 +156,7 @@ def get_colors(kind, low_blue_light=False, colorblind=False):
         "light_blue": "blue",
         "light_purple": "purple",
         "light_pink": "pink",
+        "light_rose": "rose",
         "light_red": "red",
     }
     for light_name, accent_name in tint_names.items():
