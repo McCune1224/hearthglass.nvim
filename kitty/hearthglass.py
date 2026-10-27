@@ -1,27 +1,31 @@
 #!/usr/bin/env python
 # ============================================================================
 # hearthglass.py — generator + switcher for kitty terminal themes derived from
-# the same Ember palette used by the hearthglass.nvim colorscheme.
+# the hearthglass.nvim palette family.
 #
 # Run it directly with python3 (NOT as a `kitten` subcommand; kitty only ships
 # its builtin kittens). It delegates the actual theme changes to the `kitten`
 # CLI tool, which is what you configure kitty through.
 #
-# It mirrors lua/hearthglass/colors.lua: the dark and light variants share the
-# same accents/ramp, and the same two options are honored:
+# The palette data lives in exactly one place: lua/hearthglass/themes.lua.
+# kitty/palettes.json is a build artifact exported from that file by
+# kitty/export.lua (which runs hearthglass.colors, the same ramp derivation
+# Neovim uses). This script only reads the exported slots — it carries no
+# palette of its own, so it cannot drift. Both options are honored:
 #   --low-blue-light   (light only) lift the parchment toward white
 #   --colorblind MODE  deutan|protan|tritan|true  (same red/green remap)
 #
 # Commands:
-#   python3 hearthglass.py night          apply the dark theme live
-#   python3 hearthglass.py day            apply the light theme live
-#   python3 hearthglass.py toggle         switch between day and night
-#   python3 hearthglass.py build [DIR]    write hearthglass.conf / -light.conf
-#   python3 hearthglass.py install        copy confs into ~/.config/kitty/themes
-#   python3 hearthglass.py help           show this message
+#   python3 hearthglass.py list                  list theme keys
+#   python3 hearthglass.py night  [--theme KEY]  apply a dark theme live
+#   python3 hearthglass.py day    [--theme KEY]  apply a light theme live
+#   python3 hearthglass.py toggle [--theme KEY]  switch the theme's faces
+#   python3 hearthglass.py build  [DIR]          write every conf
+#   python3 hearthglass.py install               copy confs into ~/.config/kitty/themes
+#   python3 hearthglass.py help                  show this message
 #
 # Two ways to switch themes through the kitten CLI:
-#   * interactive/persistent:  kitten themes   (pick hearthglass / -light)
+#   * interactive/persistent:  kitten themes   (pick the generated names)
 #   * live (no config edit):   kitten @ set-colors <conf-file>
 # The `night`/`day`/`toggle` commands call the latter. `kitten @ set-colors`
 # needs kitty remote control enabled (`allow_remote_control yes` and
@@ -29,161 +33,101 @@
 # the command to run.
 # ============================================================================
 
+import json
 import os
-import sys
+import shutil
 import subprocess
+import sys
 
-# --- palette (mirrors lua/hearthglass/colors.lua) ---------------------------
+HERE = os.path.dirname(os.path.abspath(__file__))
+ROOT = os.path.dirname(HERE)
+PALETTE_FILE = os.path.join(HERE, "palettes.json")
+EXPORT_SCRIPT = os.path.join(HERE, "export.lua")
 
-ACCENTS = {
-    "dark": {
-        "orange": "#d77c3a",
-        "yellow": "#d4a840",
-        "cyan": "#6b9480",
-        "green": "#8a9a50",
-        "blue": "#7894a8",
-        "purple": "#a0889a",
-        "pink": "#c48870",
-        "rose": "#c08088",
-        "red": "#d85848",
-    },
-    "light": {
-        "orange": "#8a4820",
-        "yellow": "#907830",
-        "cyan": "#356050",
-        "green": "#486230",
-        "blue": "#385a78",
-        "purple": "#685868",
-        "pink": "#884848",
-        "rose": "#906068",
-        "red": "#b04830",
-    },
-}
-
-PALETTES = {
-    "dark": {
-        "base0": "#e0cc98",
-        "base1": "#c4b088",
-        "base2": "#a89878",
-        "base3": "#8a7a68",
-        "base4": "#605240",
-        "base5": "#4a3e30",
-        "base6": "#342c24",
-        "base7": "#1e1814",
-    },
-    "light": {
-        "base0": "#2a2218",
-        "base1": "#4a4230",
-        "base2": "#5a5240",
-        "base3": "#625a4a",
-        "base4": "#7a7262",
-        "base5": "#989080",
-        "base6": "#e8e0d4",
-        "base7": "#f2eae0",
-    },
-}
-
-DARK_TINTS = {
-    "light_orange": "#4a3528",
-    "light_yellow": "#4a3e20",
-    "light_cyan": "#344438",
-    "light_green": "#3a4228",
-    "light_blue": "#364858",
-    "light_purple": "#443844",
-    "light_pink": "#4a3428",
-    "light_rose": "#443038",
-    "light_red": "#503028",
-}
+ORDER = []
+THEMES = {}
 
 
-def blend(c1, c2, amount):
-    def ch(hexstr, start):
-        return int(hexstr[start:start + 2], 16)
+def load_palettes():
+    """Read the palette snapshot exported from lua/hearthglass/themes.lua."""
+    global ORDER, THEMES
+    if not os.path.exists(PALETTE_FILE):
+        raise SystemExit(
+            "missing %s\nrun: nvim --headless -l kitty/export.lua" % PALETTE_FILE
+        )
+    with open(PALETTE_FILE) as handle:
+        data = json.load(handle)
+    ORDER = data["order"]
+    THEMES = data["themes"]
 
-    def mix(a, b):
-        return int(round(a * amount + b * (1 - amount)))
 
-    return "#%02x%02x%02x" % (
-        mix(ch(c1, 1), ch(c2, 1)),
-        mix(ch(c1, 3), ch(c2, 3)),
-        mix(ch(c1, 5), ch(c2, 5)),
+def refresh_palettes():
+    """Regenerate the snapshot from themes.lua before a build, if Neovim exists."""
+    nvim = shutil.which("nvim")
+    if not nvim:
+        sys.stderr.write("hearthglass: nvim not found; using existing palettes.json\n")
+        return
+    result = subprocess.run(
+        [nvim, "--headless", "-l", EXPORT_SCRIPT],
+        cwd=ROOT,
+        stdout=subprocess.DEVNULL,
+        stderr=subprocess.PIPE,
+        text=True,
     )
+    if result.returncode != 0:
+        sys.stderr.write(
+            "hearthglass: palette export failed, using existing palettes.json\n"
+            + (result.stderr or "")
+        )
+        return
+    load_palettes()
 
 
-def get_colors(kind, low_blue_light=False, colorblind=False):
-    palette = dict(PALETTES[kind])
-    accents = dict(ACCENTS[kind])
-    tints = dict(DARK_TINTS)
+def normalize_colorblind(value):
+    if value is True:
+        return "deutan"
+    if value in (False, None, ""):
+        return "plain"
+    if value == "protan":
+        return "deutan"
+    if value in ("deutan", "tritan"):
+        return value
+    raise SystemExit("unknown colorblind mode: %s (try deutan, protan or tritan)" % value)
 
-    if colorblind is True:
-        colorblind = "deutan"
-    elif colorblind == "protan":
-        colorblind = "deutan"
 
-    if colorblind in ("deutan", "tritan"):
-        if colorblind == "deutan":
-            if kind == "dark":
-                accents["red"] = "#d96a6f"
-                accents["green"] = "#5f9c8b"
-                accents["cyan"] = "#5f8098"
-                tints["light_green"] = "#33453c"
-                tints["light_red"] = "#4a3038"
-            else:
-                accents["red"] = "#a84a5a"
-                accents["green"] = "#3f6e60"
-                accents["cyan"] = "#4a6a80"
-        else:  # tritan
-            if kind == "dark":
-                accents["blue"] = "#8579ae"
-                accents["cyan"] = "#5f8098"
-                tints["light_blue"] = "#3a3448"
-            else:
-                accents["blue"] = "#5c5690"
-                accents["cyan"] = "#4a6a80"
-
-    palette.update(accents)
-    palette["iris"] = accents["purple"]
-    palette["muted"] = palette["base3"]
-
+def get_colors(theme, kind, low_blue_light=False, colorblind=False):
+    spec = THEMES.get(theme)
+    if spec is None:
+        raise SystemExit("unknown theme: %s (try `list`)" % theme)
+    mode = normalize_colorblind(colorblind)
+    variant = mode
     if low_blue_light and kind == "light":
-        palette["base7"] = blend("#ffffff", palette["base7"], 0.35)
-
-    tint_names = {
-        "light_orange": "orange",
-        "light_yellow": "yellow",
-        "light_cyan": "cyan",
-        "light_green": "green",
-        "light_blue": "blue",
-        "light_purple": "purple",
-        "light_pink": "pink",
-        "light_rose": "rose",
-        "light_red": "red",
-    }
-    for light_name, accent_name in tint_names.items():
-        if kind == "dark":
-            palette[light_name] = tints[light_name]
-        else:
-            palette[light_name] = blend(
-                accents[accent_name], palette["base7"], 0.18
-            )
-
-    # bright (color9..15) accents: lighter, more vivid versions of the accents
-    bright = lambda c: blend(c, "#ffffff", 0.22)
-    for name in ("red", "green", "yellow", "blue", "purple", "cyan"):
-        palette["bright_" + name] = bright(accents[name])
-    # color15 is the light end of the theme: brightened foreground (dark) or
-    # brightened background (light).
-    light_end = palette["base0"] if kind == "dark" else palette["base7"]
-    palette["bright_base0"] = blend(light_end, "#ffffff", 0.3 if kind == "light" else 0.2)
-
-    return palette
+        variant += "_low"
+    return spec["faces"][kind][variant]
 
 
-def emit_kitty(kind, low_blue_light=False, colorblind=False):
-    c = get_colors(kind, low_blue_light, colorblind)
-    title = "hearthglass" if kind == "dark" else "hearthglass-light"
+def conf_name(theme, kind):
+    if theme == "hearthglass":
+        return "hearthglass.conf" if kind == "dark" else "hearthglass-light.conf"
+    return "%s.conf" % theme if kind == "dark" else "%s-light.conf" % theme
+
+
+def emit_kitty(theme, kind, low_blue_light=False, colorblind=False):
+    c = get_colors(theme, kind, low_blue_light, colorblind)
+    title = THEMES[theme]["name"] + (" Light" if kind == "light" else "")
+    face = "light" if kind == "light" else "dark"
+    upstream = ("https://raw.githubusercontent.com/McCune1224/"
+                "hearthglass.nvim/main/kitty/" + conf_name(theme, kind))
     lines = [
-        "# %s — kitty theme derived from hearthglass.nvim (Ember palette)" % title,
+        "# vim:ft=kitty",
+        "## name: %s" % title,
+        "## author: hearthglass.nvim",
+        "## license: MIT",
+        "## upstream: %s" % upstream,
+        "## blurb: %s face of the %s theme from hearthglass.nvim."
+        % (face.capitalize(), THEMES[theme]["name"]),
+        "",
+        "# %s — kitty theme derived from hearthglass.nvim" % title,
         "background %s" % c["base7"],
         "foreground %s" % c["base0"],
         "cursor %s" % c["orange"],
@@ -222,10 +166,10 @@ CACHE_DIR = os.path.join(
 )
 
 
-def _write_conf(kind, opts):
-    conf = emit_kitty(kind, opts["low_blue_light"], opts["colorblind"])
+def _write_conf(theme, kind, opts):
+    conf = emit_kitty(theme, kind, opts["low_blue_light"], opts["colorblind"])
     os.makedirs(CACHE_DIR, exist_ok=True)
-    path = os.path.join(CACHE_DIR, "hearthglass-%s.conf" % kind)
+    path = os.path.join(CACHE_DIR, conf_name(theme, kind))
     with open(path, "w") as f:
         f.write(conf)
     return path, conf
@@ -250,61 +194,75 @@ def _set_colors(path):
         return False
 
 
+def _apply(theme, kind, opts, action):
+    path, _ = _write_conf(theme, kind, opts)
+    if _set_colors(path):
+        sys.stderr.write(
+            "hearthglass: applied %s (%s) terminal theme\n"
+            % (THEMES[theme]["name"], "light" if kind == "light" else "dark")
+        )
+    else:
+        _fallback(path, action)
+
+
 def cmd_night(args):
     opts = _parse_opts(args)
-    path, _ = _write_conf("dark", opts)
-    if _set_colors(path):
-        sys.stderr.write("hearthglass: applied dark terminal theme\n")
-    else:
-        _fallback(path, "night")
+    _apply(opts["theme"], "dark", opts, "night")
 
 
 def cmd_day(args):
     opts = _parse_opts(args)
-    path, _ = _write_conf("light", opts)
-    if _set_colors(path):
-        sys.stderr.write("hearthglass: applied light terminal theme\n")
-    else:
-        _fallback(path, "day")
+    _apply(opts["theme"], "light", opts, "day")
 
 
 def cmd_toggle(args):
     opts = _parse_opts(args)
+    theme = opts["theme"]
     cur = _current_background().lower()
-    target = "light" if cur == PALETTES["dark"]["base7"].lower() else "dark"
-    path, _ = _write_conf(target, opts)
-    if _set_colors(path):
-        label = "light" if target == "light" else "dark"
-        sys.stderr.write("hearthglass: toggled to %s terminal theme\n" % label)
-    else:
-        _fallback(path, "toggle")
+    dark_bg = THEMES[theme]["faces"]["dark"]["plain"]["base7"]
+    target = "light" if cur == dark_bg.lower() else "dark"
+    _apply(theme, target, opts, "toggle")
 
 
 def cmd_build(args):
-    outdir = args[0] if args else os.path.dirname(os.path.abspath(__file__))
-    opts = _parse_opts(args[1:])
-    for kind in ("dark", "light"):
-        conf = emit_kitty(kind, opts["low_blue_light"], opts["colorblind"])
-        name = "hearthglass.conf" if kind == "dark" else "hearthglass-light.conf"
-        path = os.path.join(outdir, name)
-        with open(path, "w") as f:
-            f.write(conf)
-        sys.stderr.write("wrote %s\n" % path)
+    outdir = args[0] if args and not args[0].startswith("-") else HERE
+    rest = args[1:] if args and not args[0].startswith("-") else args
+    opts = _parse_opts(rest)
+    refresh_palettes()
+    os.makedirs(outdir, exist_ok=True)
+    themes = [opts["theme"]] if opts["theme_explicit"] else ORDER
+    for theme in themes:
+        for kind in ("dark", "light"):
+            conf = emit_kitty(theme, kind, opts["low_blue_light"], opts["colorblind"])
+            path = os.path.join(outdir, conf_name(theme, kind))
+            with open(path, "w") as f:
+                f.write(conf)
+            sys.stderr.write("wrote %s\n" % path)
 
 
 def cmd_install(args):
     opts = _parse_opts(args)
-    themes_dir = os.path.expanduser("~/.config/kitty/themes")
+    refresh_palettes()
+    themes = [opts["theme"]] if opts["theme_explicit"] else ORDER
+    config_home = os.environ.get("XDG_CONFIG_HOME", os.path.expanduser("~/.config"))
+    themes_dir = os.path.join(config_home, "kitty", "themes")
     os.makedirs(themes_dir, exist_ok=True)
-    for kind in ("dark", "light"):
-        conf = emit_kitty(kind, opts["low_blue_light"], opts["colorblind"])
-        name = "hearthglass.conf" if kind == "dark" else "hearthglass-light.conf"
-        with open(os.path.join(themes_dir, name), "w") as f:
-            f.write(conf)
+    for theme in themes:
+        for kind in ("dark", "light"):
+            conf = emit_kitty(theme, kind, opts["low_blue_light"], opts["colorblind"])
+            with open(os.path.join(themes_dir, conf_name(theme, kind)), "w") as f:
+                f.write(conf)
     sys.stderr.write(
-        "installed themes into %s\n"
-        "use `kitten themes` and pick hearthglass / hearthglass-light\n" % themes_dir
+        "installed %d theme(s) into %s\n"
+        "use `kitten themes` and pick a Hearthglass entry\n"
+        % (len(themes), themes_dir)
     )
+
+
+def cmd_list(args):
+    for key in ORDER:
+        legacy = " (original)" if THEMES[key].get("legacy") else ""
+        sys.stdout.write("%-22s %s%s\n" % (key, THEMES[key]["name"], legacy))
 
 
 def _fallback(path, action):
@@ -315,50 +273,72 @@ def _fallback(path, action):
 
 
 def _parse_opts(args):
-    opts = {"low_blue_light": False, "colorblind": False}
+    opts = {
+        "low_blue_light": False,
+        "colorblind": False,
+        "theme": "hearthglass",
+        "theme_explicit": False,
+    }
     i = 0
     while i < len(args):
         a = args[i]
         if a == "--low-blue-light":
             opts["low_blue_light"] = True
         elif a == "--colorblind":
-            opts["colorblind"] = args[i + 1] if i + 1 < len(args) else True
+            opts["colorblind"] = True
+            if i + 1 < len(args) and not args[i + 1].startswith("-"):
+                opts["colorblind"] = args[i + 1]
+                i += 1
+        elif a == "--theme":
+            if i + 1 >= len(args):
+                raise SystemExit("--theme needs a key (try `list`)")
+            opts["theme"] = args[i + 1]
+            opts["theme_explicit"] = True
             i += 1
         i += 1
+    if opts["theme"] not in THEMES:
+        raise SystemExit("unknown theme: %s (try `list`)" % opts["theme"])
     return opts
 
 
-HELP = """hearthglass — kitty terminal themes for hearthglass.nvim
+def help_text():
+    themes = ", ".join(ORDER)
+    return """hearthglass — kitty terminal themes for hearthglass.nvim
 
 Run directly with python3 (not as a `kitten` subcommand; kitty only ships its
 builtin kittens). Theme changes are applied through the `kitten` CLI tool.
 
 Usage:
-  python3 hearthglass.py night    [--low-blue-light] [--colorblind MODE]
-  python3 hearthglass.py day      [--low-blue-light] [--colorblind MODE]
-  python3 hearthglass.py toggle   [--low-blue-light] [--colorblind MODE]
-  python3 hearthglass.py build    [DIR]
-  python3 hearthglass.py install
+  python3 hearthglass.py list
+  python3 hearthglass.py night    [--theme KEY] [--low-blue-light] [--colorblind MODE]
+  python3 hearthglass.py day      [--theme KEY] [--low-blue-light] [--colorblind MODE]
+  python3 hearthglass.py toggle   [--theme KEY] [--low-blue-light] [--colorblind MODE]
+  python3 hearthglass.py build    [DIR] [--theme KEY]
+  python3 hearthglass.py install  [--theme KEY]
   python3 hearthglass.py help
 
+Themes:
+  %s
+
 Options:
+  --theme KEY        theme key (default: hearthglass)
   --low-blue-light   light variant only: lift parchment toward white
   --colorblind MODE  deutan | protan | tritan | true
 
-`install` copies hearthglass.conf / hearthglass-light.conf into
-~/.config/kitty/themes, so you can switch with the kitten CLI:
-  kitten themes                # pick hearthglass / hearthglass-light
-  kitten themes hearthglass    # switch to dark non-interactively
-  kitten themes hearthglass-light
+`install` copies every theme's conf into ~/.config/kitty/themes, so you can
+switch with the kitten CLI:
+  kitten themes                 # interactive picker
+  kitten themes daisy           # dark
+  kitten themes daisy-light
 
 `night`/`day`/`toggle` apply live via `kitten @ set-colors`, which needs kitty
 remote control enabled in kitty.conf:
   allow_remote_control yes
   listen_on unix:/tmp/kitty
-Otherwise the conf is written and you are told the command to run."""
+Otherwise the conf is written and you are told the command to run.""" % themes
 
 
-COMMANDS = {"night", "day", "toggle", "build", "install", "help"}
+COMMANDS = {"list", "night", "day", "toggle", "build", "install", "help"}
 
 
 def _strip_banner(args):
@@ -367,32 +347,34 @@ def _strip_banner(args):
     # while direct runs pass the command first:
     #   python3 hearthglass.py night   ->  main(['night', ...])
     # Strip the leading 'kitten' / kitten-name tokens so both resolve to the
-    # command name.
+    # command name. Options are expected after the command.
     while args and args[0] not in COMMANDS:
-        if args[0] in ("--low-blue-light", "--colorblind"):
+        if args[0] in ("--low-blue-light", "--colorblind", "--theme"):
             break
         args = args[1:]
     return args
 
 
 def main(args):
+    load_palettes()
     args = _strip_banner(list(args))
     if not args:
-        sys.stderr.write(HELP + "\n")
+        sys.stderr.write(help_text() + "\n")
         return
     cmd = args[0]
     rest = args[1:]
     handlers = {
+        "list": cmd_list,
         "night": cmd_night,
         "day": cmd_day,
         "toggle": cmd_toggle,
         "build": cmd_build,
         "install": cmd_install,
-        "help": lambda a: sys.stderr.write(HELP + "\n"),
+        "help": lambda a: sys.stderr.write(help_text() + "\n"),
     }
     handler = handlers.get(cmd)
     if handler is None:
-        sys.stderr.write("unknown command: %s\n\n%s\n" % (cmd, HELP))
+        sys.stderr.write("unknown command: %s\n\n%s\n" % (cmd, help_text()))
         return
     handler(rest)
 

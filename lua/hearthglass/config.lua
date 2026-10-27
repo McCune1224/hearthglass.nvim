@@ -3,9 +3,10 @@
 -- Configuration for the hearthglass colorscheme.
 --
 -- hearthglass is a clone of deepwhite.nvim (Verf/deepwhite.nvim) recolored
--- with the ember palette (ember-theme/nvim). It ships two variants:
---   hearthglass        - dark, deepwhite structure with ember dark palette
---   hearthglass-light  - light, deepwhite structure with ember light palette
+-- with the ember palette (ember-theme/nvim). It ships a family of themes, each
+-- with a dark and a light face:
+--   hearthglass, stained, sanguine, vinifera, daisy, smoked, frosted, cathedral, leaded
+-- See lua/hearthglass/themes.lua for the palette definitions.
 -- ============================================================================
 
 local M = {}
@@ -18,7 +19,7 @@ M.options = {
   -- Colorblind-safe accent remap. Accepts false (default), true (alias for
   -- 'deutan'), 'deutan', 'protan', or 'tritan'. Applies to both variants.
   --   deutan/protan: red/green meaning pair -> rose/teal
-  --   tritan:        blue -> violet-leaning, cyan -> steel
+  --   tritan:        blue -> purple-leaning, cyan -> steel
   colorblind = false,
 }
 
