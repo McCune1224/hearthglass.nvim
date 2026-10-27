@@ -5,10 +5,10 @@
 --   :colorscheme hearthglass             -> original, dark
 --   :colorscheme hearthglass-light       -> original, light
 --   :colorscheme hearthglass-auto        -> original, follows the desktop
---   :colorscheme daisy                   -> Daisy, dark
---   :colorscheme daisy-light             -> Daisy, light
---   :colorscheme sanguine                 -> Sanguine, dark
---   :HearthglassTheme daisy              -> switch theme, keep the current face
+--   :colorscheme seaglass                -> Seaglass, dark
+--   :colorscheme seaglass-light          -> Seaglass, light
+--   :colorscheme flambe                  -> Flambe, dark
+--   :HearthglassTheme cranberry          -> switch theme, keep the current face
 --   :HearthglassTheme                    -> list the family
 --   :HearthglassToggle                   -> flip dark <-> light, keep the theme
 --   :HearthglassSync                     -> re-read the desktop preference

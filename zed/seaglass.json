@@ -1,11 +1,11 @@
 {
   "$schema": "https://zed.dev/schema/themes/v0.2.0.json",
   "author": "McCune1224",
-  "name": "Hearthglass Daisy",
+  "name": "Hearthglass Seaglass",
   "themes": [
     {
       "appearance": "dark",
-      "name": "Hearthglass Daisy Dark",
+      "name": "Hearthglass Seaglass Dark",
       "style": {
         "accents": [
           "#e08a6d",
@@ -399,7 +399,7 @@
     },
     {
       "appearance": "light",
-      "name": "Hearthglass Daisy Light",
+      "name": "Hearthglass Seaglass Light",
       "style": {
         "accents": [
           "#83331f",

@@ -1,11 +1,11 @@
 {
   "$schema": "https://zed.dev/schema/themes/v0.2.0.json",
   "author": "McCune1224",
-  "name": "Hearthglass Sanguine",
+  "name": "Hearthglass Flambe",
   "themes": [
     {
       "appearance": "dark",
-      "name": "Hearthglass Sanguine Dark",
+      "name": "Hearthglass Flambe Dark",
       "style": {
         "accents": [
           "#f04f3c",
@@ -399,7 +399,7 @@
     },
     {
       "appearance": "light",
-      "name": "Hearthglass Sanguine Light",
+      "name": "Hearthglass Flambe Light",
       "style": {
         "accents": [
           "#a0281f",

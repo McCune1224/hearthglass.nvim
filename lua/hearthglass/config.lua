@@ -5,7 +5,7 @@
 -- hearthglass is a clone of deepwhite.nvim (Verf/deepwhite.nvim) recolored
 -- with the ember palette (ember-theme/nvim). It ships a family of themes, each
 -- with a dark and a light face:
---   hearthglass, stained, sanguine, vinifera, daisy, smoked, frosted, cathedral, leaded
+--   hearthglass, stained, flambe, cranberry, seaglass, smoked, frosted, cathedral, leaded
 -- See lua/hearthglass/themes.lua for the palette definitions.
 -- ============================================================================
 

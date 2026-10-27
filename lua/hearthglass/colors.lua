@@ -176,7 +176,7 @@ local function expand(compact, kind)
   return palette, color_accents
 end
 
----@param variant string  'hearthglass', 'daisy', 'daisy-light', ...
+---@param variant string  'hearthglass', 'seaglass', 'seaglass-light', ...
 ---@param options table|nil
 ---@return table
 function M.get_colors(variant, options)

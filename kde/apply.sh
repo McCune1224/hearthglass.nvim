@@ -10,7 +10,7 @@ face="${2:-dark}"
 
 case "$face" in
   light|dark) ;;
-  *) echo "Usage: $0 <key> <light|dark>   # keys: hearthglass, stained, sanguine, vinifera, daisy, smoked, frosted, cathedral, leaded" >&2; exit 2 ;;
+  *) echo "Usage: $0 <key> <light|dark>   # keys: hearthglass, stained, flambe, cranberry, seaglass, smoked, frosted, cathedral, leaded" >&2; exit 2 ;;
 esac
 
 row="$(awk -F'\t' -v k="$key" -v f="$face" 'NR > 1 && $1 == k && $2 == f { print; exit }' "$here/themes.tsv")"

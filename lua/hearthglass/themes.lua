@@ -22,12 +22,13 @@
 -- so every theme stays structurally identical.
 --
 -- The family spans amber, vermilion, wine, coral, smoked gray, polar blue-gray,
--- ink black and forest green. The newer themes are named after glass forms:
--- Stained, Smoked, Frosted, Cathedral and Leaded. They vary both hue and
--- saturation. Smoked is deliberately minimal, with a single warm accent and
--- gray syntax support. The others keep several unrelated accents in play so
--- their highlight patterns stay colorful. Only `daisy` is
--- anchored to the photographed daisy-petal reference: deep teal shadow
+-- ink black and forest green. Every theme carries a glass name. Flambe,
+-- Cranberry and Seaglass keep the original red, wine and coral palettes;
+-- Stained, Smoked, Frosted, Cathedral and Leaded add the newer directions.
+-- Smoked is deliberately minimal, with a single warm accent and gray syntax
+-- support. The others keep several unrelated accents in play so their
+-- highlight patterns stay colorful. Only `seaglass` is anchored to the
+-- photographed petal reference: deep teal shadow
 -- #0e2426, coral petal #e08a6d, cyan rim #5fd6d2, amber pollen #d98f3a and
 -- bone highlight #f3ded0. Its dark face uses those anchors directly; the light
 -- face keeps each hue angle and shifts lightness only as far as WCAG contrast
@@ -39,9 +40,9 @@ local M = {}
 M.order = {
   'hearthglass',
   'stained',
-  'sanguine',
-  'vinifera',
-  'daisy',
+  'flambe',
+  'cranberry',
+  'seaglass',
   'smoked',
   'frosted',
   'cathedral',
@@ -82,9 +83,9 @@ M.themes = {
     },
   },
 
-  ['sanguine'] = {
-    name = 'Sanguine',
-    tagline = 'Vermilion red, hot and open. Warmer and redder than wine.',
+  ['flambe'] = {
+    name = 'Flambe',
+    tagline = 'Ruby glass and vermilion fire. Hotter and redder than wine.',
     dark = {
       bg = '#170c0a',
       bg2 = '#28120f',
@@ -109,9 +110,9 @@ M.themes = {
     },
   },
 
-  ['vinifera'] = {
-    name = 'Vinifera',
-    tagline = 'Wine-dark. Plum in the shadows, a red that leans toward rose.',
+  ['cranberry'] = {
+    name = 'Cranberry',
+    tagline = 'Cranberry glass and plum shadow. A wine-dark rose that stays readable.',
     dark = {
       bg = '#1a0f14',
       bg2 = '#28161d',
@@ -136,9 +137,9 @@ M.themes = {
     },
   },
 
-  ['daisy'] = {
-    name = 'Daisy',
-    tagline = 'Photographed daisy petals: coral hero, deep teal shadow, cyan rim.',
+  ['seaglass'] = {
+    name = 'Seaglass',
+    tagline = 'Sea glass, coral light and a deep teal shadow.',
     dark = {
       bg = '#0e2426',
       bg2 = '#143032',
@@ -273,8 +274,8 @@ M.themes = {
 }
 
 --- Split a colorscheme variant name into its theme key and face.
----   'daisy'       -> 'daisy', 'dark'
----   'daisy-light' -> 'daisy', 'light'
+---   'seaglass'       -> 'seaglass', 'dark'
+---   'seaglass-light' -> 'seaglass', 'light'
 ---   'hearthglass-auto' -> 'hearthglass', 'auto'
 ---@param variant string
 ---@return string key, string face

@@ -1,11 +1,11 @@
 {
   "$schema": "https://zed.dev/schema/themes/v0.2.0.json",
   "author": "McCune1224",
-  "name": "Hearthglass Vinifera",
+  "name": "Hearthglass Cranberry",
   "themes": [
     {
       "appearance": "dark",
-      "name": "Hearthglass Vinifera Dark",
+      "name": "Hearthglass Cranberry Dark",
       "style": {
         "accents": [
           "#d95a70",
@@ -399,7 +399,7 @@
     },
     {
       "appearance": "light",
-      "name": "Hearthglass Vinifera Light",
+      "name": "Hearthglass Cranberry Light",
       "style": {
         "accents": [
           "#8e2f45",

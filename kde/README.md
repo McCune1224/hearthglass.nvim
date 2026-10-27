@@ -10,9 +10,9 @@ ships them.
 | --- | --- | --- |
 | Hearthglass | `Hearthglass` | `Hearthglass Dark` |
 | Stained | `Stained` | `Stained Dark` |
-| Sanguine | `Sanguine` | `Sanguine Dark` |
-| Vinifera | `Vinifera` | `Vinifera Dark` |
-| Daisy | `Daisy` | `Daisy Dark` |
+| Flambe | `Flambe` | `Flambe Dark` |
+| Cranberry | `Cranberry` | `Cranberry Dark` |
+| Seaglass | `Seaglass` | `Seaglass Dark` |
 | Smoked | `Smoked` | `Smoked Dark` |
 | Frosted | `Frosted` | `Frosted Dark` |
 | Cathedral | `Cathedral` | `Cathedral Dark` |
@@ -76,8 +76,8 @@ is backed up to `hearthglass-kde-backup-<timestamp>`.
 ```bash
 ./kde/apply.sh hearthglass light
 ./kde/apply.sh hearthglass dark
-./kde/apply.sh vinifera dark
-./kde/apply.sh sanguine dark
+./kde/apply.sh cranberry dark
+./kde/apply.sh flambe dark
 ./kde/apply.sh stained dark
 ./kde/apply.sh leaded light
 ```
@@ -98,7 +98,7 @@ Convenience wrappers default to the flagship family:
 ```bash
 ./kde/apply-light.sh            # hearthglass light
 ./kde/apply-dark.sh             # hearthglass dark
-./kde/apply-light.sh daisy
+./kde/apply-light.sh seaglass
 ```
 
 Check an installation with `./kde/verify.sh`; back out with

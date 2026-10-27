@@ -7,11 +7,11 @@
       `__pycache__/` to `.gitignore` and remove it from the index.
 - [x] Trim the Ember/deepwhite mentions from the README prose and move the
       credit into a short Inspirations section at the bottom.
-- [x] Keep Hearthglass, Sanguine, Vinifera and Daisy as the warm core.
+- [x] Keep Hearthglass, Flambe, Cranberry and Seaglass as the warm core.
 - [x] Add Smoked, Frosted, Cathedral and Leaded with distinct color directions.
 - [x] Add Stained as the Gruvbox-inspired variation.
-- [x] Document the glass-form naming convention and the Hearthglass family
-      name in the README.
+- [x] Give every theme a glass name and document the naming convention in the
+      README.
 - [x] Single-source every integration: kitty reads an export of `themes.lua`,
       Zed reads `colors.lua` directly, KDE reads the exported snapshot.
 - [x] Ship all nine families as KDE Plasma 6 global themes in both faces,

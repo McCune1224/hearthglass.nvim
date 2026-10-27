@@ -3,12 +3,12 @@ hearthglass	light	org.hearthglass.hearthglass.desktop	HearthglassLight	hearthgla
 hearthglass	dark	org.hearthglass.hearthglassdark.desktop	HearthglassDark	hearthglass-dark	HearthglassDark	hearthglass-icons	hearthglass-cursors	HearthglassDark	Hearthglass Dark	Hearthglass Dark
 stained	light	org.hearthglass.stained.desktop	StainedLight	stained	Stained	stained-icons	hearthglass-cursors	Stained	Stained Light	Stained
 stained	dark	org.hearthglass.staineddark.desktop	StainedDark	stained-dark	StainedDark	stained-icons	hearthglass-cursors	StainedDark	Stained Dark	Stained Dark
-sanguine	light	org.hearthglass.sanguine.desktop	SanguineLight	sanguine	Sanguine	sanguine-icons	hearthglass-cursors	Sanguine	Sanguine Light	Sanguine
-sanguine	dark	org.hearthglass.sanguinedark.desktop	SanguineDark	sanguine-dark	SanguineDark	sanguine-icons	hearthglass-cursors	SanguineDark	Sanguine Dark	Sanguine Dark
-vinifera	light	org.hearthglass.vinifera.desktop	ViniferaLight	vinifera	Vinifera	vinifera-icons	hearthglass-cursors	Vinifera	Vinifera Light	Vinifera
-vinifera	dark	org.hearthglass.viniferadark.desktop	ViniferaDark	vinifera-dark	ViniferaDark	vinifera-icons	hearthglass-cursors	ViniferaDark	Vinifera Dark	Vinifera Dark
-daisy	light	org.hearthglass.daisy.desktop	DaisyLight	daisy	Daisy	daisy-icons	hearthglass-cursors	Daisy	Daisy Light	Daisy
-daisy	dark	org.hearthglass.daisydark.desktop	DaisyDark	daisy-dark	DaisyDark	daisy-icons	hearthglass-cursors	DaisyDark	Daisy Dark	Daisy Dark
+flambe	light	org.hearthglass.flambe.desktop	FlambeLight	flambe	Flambe	flambe-icons	hearthglass-cursors	Flambe	Flambe Light	Flambe
+flambe	dark	org.hearthglass.flambedark.desktop	FlambeDark	flambe-dark	FlambeDark	flambe-icons	hearthglass-cursors	FlambeDark	Flambe Dark	Flambe Dark
+cranberry	light	org.hearthglass.cranberry.desktop	CranberryLight	cranberry	Cranberry	cranberry-icons	hearthglass-cursors	Cranberry	Cranberry Light	Cranberry
+cranberry	dark	org.hearthglass.cranberrydark.desktop	CranberryDark	cranberry-dark	CranberryDark	cranberry-icons	hearthglass-cursors	CranberryDark	Cranberry Dark	Cranberry Dark
+seaglass	light	org.hearthglass.seaglass.desktop	SeaglassLight	seaglass	Seaglass	seaglass-icons	hearthglass-cursors	Seaglass	Seaglass Light	Seaglass
+seaglass	dark	org.hearthglass.seaglassdark.desktop	SeaglassDark	seaglass-dark	SeaglassDark	seaglass-icons	hearthglass-cursors	SeaglassDark	Seaglass Dark	Seaglass Dark
 smoked	light	org.hearthglass.smoked.desktop	SmokedLight	smoked	Smoked	smoked-icons	hearthglass-cursors	Smoked	Smoked Light	Smoked
 smoked	dark	org.hearthglass.smokeddark.desktop	SmokedDark	smoked-dark	SmokedDark	smoked-icons	hearthglass-cursors	SmokedDark	Smoked Dark	Smoked Dark
 frosted	light	org.hearthglass.frosted.desktop	FrostedLight	frosted	Frosted	frosted-icons	hearthglass-cursors	Frosted	Frosted Light	Frosted

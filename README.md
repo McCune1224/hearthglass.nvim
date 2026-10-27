@@ -33,9 +33,9 @@ Nine families. Every theme has a dark and a light face:
 | --- | --- | --- | --- |
 | Hearthglass | `hearthglass` | amber | the original: amber hero, ivory ink, hearth ash |
 | Stained | `stained` | hot orange | Gruvbox bones, stained-glass retro warmth, brighter red |
-| Sanguine | `sanguine` | vermilion | hot open red, warmer and redder than wine |
-| Vinifera | `vinifera` | rose red | wine-dark, plum in the shadows |
-| Daisy | `daisy` | coral | photographed petals: deep teal shadow, coral hero, cyan rim |
+| Flambe | `flambe` | vermilion | ruby glass, hot open red, warmer than wine |
+| Cranberry | `cranberry` | rose red | cranberry glass, wine-dark plum |
+| Seaglass | `seaglass` | coral | sea glass over a deep teal shadow, coral hero, cyan rim |
 | Smoked | `smoked` | warm orange | smoked gray surfaces, one accent, gray syntax support |
 | Frosted | `frosted` | frost cyan | polar blue-gray glass, aurora accents, cold and soft |
 | Cathedral | `cathedral` | glass lilac | ink black, peony, carp yellow, spring green |
@@ -47,7 +47,7 @@ Smoked is deliberately minimal, with one warm accent and gray syntax support.
 Frosted, Cathedral and Leaded keep several unrelated accents in play, so their
 highlight patterns stay colorful.
 
-Only Daisy is anchored to the photographed daisy-petal reference: deep teal
+Only Seaglass is anchored to the photographed petal reference: deep teal
 shadow `#0e2426`, coral petal `#e08a6d`, cyan rim `#5fd6d2`, amber pollen
 `#d98f3a` and bone highlight `#f3ded0`. Its dark face uses those values
 directly; the light face keeps the same hue angles and moves lightness only as
@@ -56,11 +56,11 @@ far as WCAG contrast needs.
 ## Naming
 
 The plugin is `hearthglass.nvim`; the collection is the Hearthglass family.
-The four established themes keep their names: Hearthglass, Sanguine, Vinifera
-and Daisy. Newer themes take glass-form names: Stained, Smoked, Frosted,
-Cathedral and Leaded. Keys are lowercase, `-light` selects the light face, and
-file stems and KDE package IDs use the key. For example `colors/frosted.lua`,
-`kitty/frosted.conf`, `zed/frosted.json` and `org.hearthglass.frosted.desktop`.
+Every theme has a glass name: Hearthglass, Stained, Flambe, Cranberry,
+Seaglass, Smoked, Frosted, Cathedral and Leaded. Keys are lowercase, `-light`
+selects the light face, and file stems and KDE package IDs use the key. For
+example `colors/frosted.lua`, `kitty/frosted.conf`, `zed/frosted.json` and
+`org.hearthglass.frosted.desktop`.
 
 ```vim
 :colorscheme hearthglass
@@ -68,8 +68,8 @@ file stems and KDE package IDs use the key. For example `colors/frosted.lua`,
 :colorscheme hearthglass-auto
 
 :colorscheme stained
-:colorscheme sanguine
-:colorscheme daisy
+:colorscheme flambe
+:colorscheme seaglass
 :colorscheme smoked
 ```
 
@@ -104,7 +104,7 @@ The same API is available from Lua:
 ```lua
 local hearthglass = require('hearthglass')
 hearthglass.toggle()
-hearthglass.set_theme('stained')
+hearthglass.set_theme('cranberry')
 hearthglass.list()
 ```
 
@@ -182,7 +182,7 @@ require('lualine').setup {
 
 The repository also includes `hearthglass-light` under `lua/lualine/themes/`.
 Every theme in the family ships a lualine theme under its own key
-(`stained`, `sanguine`, `daisy`, ...), so `theme = vim.g.colors_name`
+(`stained`, `flambe`, `seaglass`, ...), so `theme = vim.g.colors_name`
 follows whichever colorscheme is active.
 
 ## Terminal (kitty)
@@ -209,17 +209,17 @@ Install the confs so the `kitten themes` CLI can find them:
 
 ```sh
 python3 kitty/hearthglass.py install          # every theme
-python3 kitty/hearthglass.py install --theme stained
+python3 kitty/hearthglass.py install --theme flambe
 ```
 
 The generated confs carry kitten metadata, so the picker shows readable names
-(`Hearthglass`, `Stained`, `Sanguine`, `Daisy`, and so on). Switch
+(`Hearthglass`, `Stained`, `Flambe`, `Seaglass`, and so on). Switch
 through the kitten CLI:
 
 ```sh
 kitten themes                    # interactive picker
-kitten themes "Stained"          # dark
-kitten themes "Stained Light"    # light
+kitten themes "Cranberry"        # dark
+kitten themes "Cranberry Light"  # light
 ```
 
 ### Apply live (day / night / toggle)
@@ -236,20 +236,20 @@ listen_on unix:/tmp/kitty
 python3 kitty/hearthglass.py night                  # original dark
 python3 kitty/hearthglass.py day                    # original light
 python3 kitty/hearthglass.py toggle                 # flip the theme's faces
-python3 kitty/hearthglass.py night --theme stained   # Stained, dark
+python3 kitty/hearthglass.py night --theme seaglass  # Seaglass, dark
 python3 kitty/hearthglass.py day --theme leaded      # Leaded, light
 ```
 
 Or call the kitten CLI directly:
 
 ```sh
-kitten @ set-colors kitty/stained.conf
+kitten @ set-colors kitty/flambe.conf
 ```
 
 Each script command honors the same options as the colorscheme:
 
 ```sh
-python3 kitty/hearthglass.py day --theme stained --low-blue-light
+python3 kitty/hearthglass.py day --theme cranberry --low-blue-light
 python3 kitty/hearthglass.py night --theme cathedral --colorblind deutan
 ```
 
@@ -267,8 +267,8 @@ Neovim is available.
 ## Zed Editor
 
 Every theme in the family is available as a Zed Editor theme family, with
-matching day and night faces, for example `Hearthglass Stained Dark` and
-`Hearthglass Stained Light`. The theme files live at `zed/<key>.json`
+matching day and night faces, for example `Hearthglass Cranberry Dark` and
+`Hearthglass Cranberry Light`. The theme files live at `zed/<key>.json`
 (`zed/hearthglass.json` for the original) and are generated from
 `lua/hearthglass/themes.lua`, so Zed and Neovim always share one palette.
 
@@ -281,7 +281,7 @@ nvim --headless -l zed/build.lua --install
 Or copy a single family by hand:
 
 ```sh
-cp zed/stained.json ~/.config/zed/themes/stained.json
+cp zed/cranberry.json ~/.config/zed/themes/cranberry.json
 ```
 
 Then pick a family from Zed's theme picker (`zed: open theme picker`), or set
@@ -291,8 +291,8 @@ one in `settings.json`:
 {
   "theme": {
     "mode": "system",
-    "light": "Hearthglass Stained Light",
-    "dark": "Hearthglass Stained Dark"
+    "light": "Hearthglass Cranberry Light",
+    "dark": "Hearthglass Cranberry Dark"
   }
 }
 ```
@@ -301,7 +301,7 @@ Regenerate the files after changing a palette or the options:
 
 ```sh
 nvim --headless -l zed/build.lua                        # every family
-nvim --headless -l zed/build.lua --theme stained         # one family
+nvim --headless -l zed/build.lua --theme seaglass        # one family
 nvim --headless -l zed/build.lua --install              # every family, into Zed
 nvim --headless -l zed/build.lua --colorblind deutan
 ```
@@ -330,9 +330,9 @@ icons, cursors, Kate theme and Alt+Tab switcher.
 
 ```sh
 ./kde/install.sh
-./kde/apply.sh vinifera dark
-./kde/apply.sh daisy dark
-./kde/apply.sh stained dark
+./kde/apply.sh cranberry dark
+./kde/apply.sh seaglass dark
+./kde/apply.sh flambe dark
 ./kde/verify.sh
 ```
 

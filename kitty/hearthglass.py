@@ -328,8 +328,8 @@ Options:
 `install` copies every theme's conf into ~/.config/kitty/themes, so you can
 switch with the kitten CLI:
   kitten themes                 # interactive picker
-  kitten themes daisy           # dark
-  kitten themes daisy-light
+  kitten themes seaglass        # dark
+  kitten themes seaglass-light
 
 `night`/`day`/`toggle` apply live via `kitten @ set-colors`, which needs kitty
 remote control enabled in kitty.conf:
