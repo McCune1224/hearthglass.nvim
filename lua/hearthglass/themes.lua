@@ -22,12 +22,13 @@
 -- so every theme stays structurally identical.
 --
 -- The family spans amber, vermilion, wine, coral, smoked gray, polar blue-gray,
--- ink black and forest green. Every theme carries a glass name. Flambe,
--- Cranberry and Seaglass keep the original red, wine and coral palettes;
--- Stained, Smoked, Frosted, Cathedral and Leaded add the newer directions.
--- Smoked is deliberately minimal, with a single warm accent and gray syntax
--- support. The others keep several unrelated accents in play so their
--- highlight patterns stay colorful. Only `seaglass` is anchored to the
+-- ink black and forest green. Every theme carries a glass name. Flame Glass,
+-- Cranberry Glass and Sea Glass keep the original red, wine and coral
+-- palettes; Stained Glass, Smoked Glass, Frosted Glass, Cathedral Glass and
+-- Leaded Glass add the newer directions. Smoked Glass is deliberately minimal,
+-- with a single warm accent and gray syntax support. The others keep several
+-- unrelated accents in play so their highlight patterns stay colorful. Only
+-- `seaglass` is anchored to the
 -- photographed petal reference: deep teal shadow
 -- #0e2426, coral petal #e08a6d, cyan rim #5fd6d2, amber pollen #d98f3a and
 -- bone highlight #f3ded0. Its dark face uses those anchors directly; the light
@@ -39,14 +40,14 @@ local M = {}
 
 M.order = {
   'hearthglass',
-  'stained',
-  'flambe',
-  'cranberry',
+  'stainedglass',
+  'flameglass',
+  'cranberryglass',
   'seaglass',
-  'smoked',
-  'frosted',
-  'cathedral',
-  'leaded',
+  'smokedglass',
+  'frostedglass',
+  'cathedralglass',
+  'leadedglass',
 }
 
 M.themes = {
@@ -56,8 +57,8 @@ M.themes = {
     legacy = true,
   },
 
-  ['stained'] = {
-    name = 'Stained',
+  ['stainedglass'] = {
+    name = 'Stained Glass',
     tagline = 'Gruvbox bones, stained-glass fire. Retro warmth, hotter orange.',
     dark = {
       bg = '#282828',
@@ -83,8 +84,8 @@ M.themes = {
     },
   },
 
-  ['flambe'] = {
-    name = 'Flambe',
+  ['flameglass'] = {
+    name = 'Flame Glass',
     tagline = 'Ruby glass and vermilion fire. Hotter and redder than wine.',
     dark = {
       bg = '#170c0a',
@@ -110,8 +111,8 @@ M.themes = {
     },
   },
 
-  ['cranberry'] = {
-    name = 'Cranberry',
+  ['cranberryglass'] = {
+    name = 'Cranberry Glass',
     tagline = 'Cranberry glass and plum shadow. A wine-dark rose that stays readable.',
     dark = {
       bg = '#1a0f14',
@@ -138,7 +139,7 @@ M.themes = {
   },
 
   ['seaglass'] = {
-    name = 'Seaglass',
+    name = 'Sea Glass',
     tagline = 'Sea glass, coral light and a deep teal shadow.',
     dark = {
       bg = '#0e2426',
@@ -164,8 +165,8 @@ M.themes = {
     },
   },
 
-  ['smoked'] = {
-    name = 'Smoked',
+  ['smokedglass'] = {
+    name = 'Smoked Glass',
     tagline = 'Smoked glass and one warm accent. Quiet code, clear cursor.',
     dark = {
       bg = '#17181a',
@@ -191,8 +192,8 @@ M.themes = {
     },
   },
 
-  ['frosted'] = {
-    name = 'Frosted',
+  ['frostedglass'] = {
+    name = 'Frosted Glass',
     tagline = 'Frosted glass, polar blue-gray and aurora accents. Cold and soft.',
     dark = {
       bg = '#1f242c',
@@ -218,8 +219,8 @@ M.themes = {
     },
   },
 
-  ['cathedral'] = {
-    name = 'Cathedral',
+  ['cathedralglass'] = {
+    name = 'Cathedral Glass',
     tagline = 'Ink black and cathedral light: lilac, peony, carp yellow, spring green.',
     dark = {
       bg = '#16161d',
@@ -245,8 +246,8 @@ M.themes = {
     },
   },
 
-  ['leaded'] = {
-    name = 'Leaded',
+  ['leadedglass'] = {
+    name = 'Leaded Glass',
     tagline = 'Leaded glass, forest shadow, cream light, autumn orange and river aqua.',
     dark = {
       bg = '#1e2320',

@@ -9,14 +9,14 @@ ships them.
 | Family | Light Global Theme | Dark Global Theme |
 | --- | --- | --- |
 | Hearthglass | `Hearthglass` | `Hearthglass Dark` |
-| Stained | `Stained` | `Stained Dark` |
-| Flambe | `Flambe` | `Flambe Dark` |
-| Cranberry | `Cranberry` | `Cranberry Dark` |
-| Seaglass | `Seaglass` | `Seaglass Dark` |
-| Smoked | `Smoked` | `Smoked Dark` |
-| Frosted | `Frosted` | `Frosted Dark` |
-| Cathedral | `Cathedral` | `Cathedral Dark` |
-| Leaded | `Leaded` | `Leaded Dark` |
+| Stained Glass | `Stained Glass` | `Stained Glass Dark` |
+| Flame Glass | `Flame Glass` | `Flame Glass Dark` |
+| Cranberry Glass | `Cranberry Glass` | `Cranberry Glass Dark` |
+| Sea Glass | `Sea Glass` | `Sea Glass Dark` |
+| Smoked Glass | `Smoked Glass` | `Smoked Glass Dark` |
+| Frosted Glass | `Frosted Glass` | `Frosted Glass Dark` |
+| Cathedral Glass | `Cathedral Glass` | `Cathedral Glass Dark` |
+| Leaded Glass | `Leaded Glass` | `Leaded Glass Dark` |
 
 ## What's inside
 
@@ -32,8 +32,8 @@ For every family and face:
 
 Shared across the family:
 
-- nine icon themes (`hearthglass-icons`, `stained-icons`, ...,
-  `leaded-icons`), one per palette, inheriting Breeze
+- nine icon themes (`hearthglass-icons`, `stainedglass-icons`, ...,
+  `leadedglass-icons`), one per palette, inheriting Breeze
 - one cursor theme (`hearthglass-cursors`), like Clay's single cursor set
 - one Alt+Tab switcher (`hearthglass_grid`)
 
@@ -76,10 +76,10 @@ is backed up to `hearthglass-kde-backup-<timestamp>`.
 ```bash
 ./kde/apply.sh hearthglass light
 ./kde/apply.sh hearthglass dark
-./kde/apply.sh cranberry dark
-./kde/apply.sh flambe dark
-./kde/apply.sh stained dark
-./kde/apply.sh leaded light
+./kde/apply.sh cranberryglass dark
+./kde/apply.sh flameglass dark
+./kde/apply.sh stainedglass dark
+./kde/apply.sh leadedglass light
 ```
 
 Or pick the Global Theme in System Settings → Colors & Themes → Global Theme.

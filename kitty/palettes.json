@@ -1,7 +1,7 @@
 {
-  "order": ["hearthglass", "stained", "flambe", "cranberry", "seaglass", "smoked", "frosted", "cathedral", "leaded"],
+  "order": ["hearthglass", "stainedglass", "flameglass", "cranberryglass", "seaglass", "smokedglass", "frostedglass", "cathedralglass", "leadedglass"],
   "themes": {
-    "cathedral": {
+    "cathedralglass": {
       "faces": {
         "dark": {
           "deutan": {
@@ -378,10 +378,10 @@
         }
       },
       "legacy": false,
-      "name": "Cathedral",
+      "name": "Cathedral Glass",
       "tagline": "Ink black and cathedral light: lilac, peony, carp yellow, spring green."
     },
-    "cranberry": {
+    "cranberryglass": {
       "faces": {
         "dark": {
           "deutan": {
@@ -758,10 +758,10 @@
         }
       },
       "legacy": false,
-      "name": "Cranberry",
+      "name": "Cranberry Glass",
       "tagline": "Cranberry glass and plum shadow. A wine-dark rose that stays readable."
     },
-    "flambe": {
+    "flameglass": {
       "faces": {
         "dark": {
           "deutan": {
@@ -1138,10 +1138,10 @@
         }
       },
       "legacy": false,
-      "name": "Flambe",
+      "name": "Flame Glass",
       "tagline": "Ruby glass and vermilion fire. Hotter and redder than wine."
     },
-    "frosted": {
+    "frostedglass": {
       "faces": {
         "dark": {
           "deutan": {
@@ -1518,7 +1518,7 @@
         }
       },
       "legacy": false,
-      "name": "Frosted",
+      "name": "Frosted Glass",
       "tagline": "Frosted glass, polar blue-gray and aurora accents. Cold and soft."
     },
     "hearthglass": {
@@ -1901,7 +1901,7 @@
       "name": "Hearthglass",
       "tagline": "The original: amber hero, ivory ink, hearth ash."
     },
-    "leaded": {
+    "leadedglass": {
       "faces": {
         "dark": {
           "deutan": {
@@ -2278,7 +2278,7 @@
         }
       },
       "legacy": false,
-      "name": "Leaded",
+      "name": "Leaded Glass",
       "tagline": "Leaded glass, forest shadow, cream light, autumn orange and river aqua."
     },
     "seaglass": {
@@ -2658,10 +2658,10 @@
         }
       },
       "legacy": false,
-      "name": "Seaglass",
+      "name": "Sea Glass",
       "tagline": "Sea glass, coral light and a deep teal shadow."
     },
-    "smoked": {
+    "smokedglass": {
       "faces": {
         "dark": {
           "deutan": {
@@ -3038,10 +3038,10 @@
         }
       },
       "legacy": false,
-      "name": "Smoked",
+      "name": "Smoked Glass",
       "tagline": "Smoked glass and one warm accent. Quiet code, clear cursor."
     },
-    "stained": {
+    "stainedglass": {
       "faces": {
         "dark": {
           "deutan": {
@@ -3418,7 +3418,7 @@
         }
       },
       "legacy": false,
-      "name": "Stained",
+      "name": "Stained Glass",
       "tagline": "Gruvbox bones, stained-glass fire. Retro warmth, hotter orange."
     }
   }

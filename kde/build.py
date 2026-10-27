@@ -5,7 +5,7 @@ The layout, component set and visual language follow Clay by Artt
 (https://github.com/arttvad9r/clay-kde-theme, LGPL-2.1-or-later), retargeted
 from Clay's single ivory/terracotta palette to every hearthglass palette:
 
-    hearthglass, stained, flambe, cranberry, seaglass, smoked, frosted, cathedral, leaded
+    hearthglass, stainedglass, flameglass, cranberryglass, seaglass, smokedglass, frostedglass, cathedralglass, leadedglass
 
 Each palette is built in both faces, so eighteen Global Themes come out of it.
 

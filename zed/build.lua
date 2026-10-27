@@ -6,7 +6,7 @@
 -- Run it with Neovim, from the root of the repository:
 --
 --   nvim --headless -l zed/build.lua                  # write every zed/*.json
---   nvim --headless -l zed/build.lua --theme frosted  # one family
+--   nvim --headless -l zed/build.lua --theme frostedglass  # one family
 --   nvim --headless -l zed/build.lua /tmp/out.json    # one family, elsewhere
 --   nvim --headless -l zed/build.lua --install        # also copy into ~/.config/zed/themes
 --

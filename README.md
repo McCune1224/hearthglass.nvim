@@ -32,20 +32,20 @@ Nine families. Every theme has a dark and a light face:
 | Theme | Key | Hero | Feel |
 | --- | --- | --- | --- |
 | Hearthglass | `hearthglass` | amber | the original: amber hero, ivory ink, hearth ash |
-| Stained | `stained` | hot orange | Gruvbox bones, stained-glass retro warmth, brighter red |
-| Flambe | `flambe` | vermilion | ruby glass, hot open red, warmer than wine |
-| Cranberry | `cranberry` | rose red | cranberry glass, wine-dark plum |
-| Seaglass | `seaglass` | coral | sea glass over a deep teal shadow, coral hero, cyan rim |
-| Smoked | `smoked` | warm orange | smoked gray surfaces, one accent, gray syntax support |
-| Frosted | `frosted` | frost cyan | polar blue-gray glass, aurora accents, cold and soft |
-| Cathedral | `cathedral` | glass lilac | ink black, peony, carp yellow, spring green |
-| Leaded | `leaded` | forest green | leaded glass, cream light, autumn orange, river aqua |
+| Stained Glass | `stainedglass` | hot orange | Gruvbox bones, stained-glass retro warmth, brighter red |
+| Flame Glass | `flameglass` | vermilion | ruby glass, hot open red, warmer than wine |
+| Cranberry Glass | `cranberryglass` | rose red | cranberry glass, wine-dark plum |
+| Sea Glass | `seaglass` | coral | sea glass over a deep teal shadow, coral hero, cyan rim |
+| Smoked Glass | `smokedglass` | warm orange | smoked gray surfaces, one accent, gray syntax support |
+| Frosted Glass | `frostedglass` | frost cyan | polar blue-gray glass, aurora accents, cold and soft |
+| Cathedral Glass | `cathedralglass` | glass lilac | ink black, peony, carp yellow, spring green |
+| Leaded Glass | `leadedglass` | forest green | leaded glass, cream light, autumn orange, river aqua |
 
 The family spans amber, hot orange, vermilion, wine, coral, smoked gray, polar
-blue, ink lilac and forest green. Stained is the Gruvbox-inspired variation.
-Smoked is deliberately minimal, with one warm accent and gray syntax support.
-Frosted, Cathedral and Leaded keep several unrelated accents in play, so their
-highlight patterns stay colorful.
+blue, ink lilac and forest green. Stained Glass is the Gruvbox-inspired
+variation. Smoked Glass is deliberately minimal, with one warm accent and gray
+syntax support. Frosted Glass, Cathedral Glass and Leaded Glass keep several
+unrelated accents in play, so their highlight patterns stay colorful.
 
 Only Seaglass is anchored to the photographed petal reference: deep teal
 shadow `#0e2426`, coral petal `#e08a6d`, cyan rim `#5fd6d2`, amber pollen
@@ -56,21 +56,22 @@ far as WCAG contrast needs.
 ## Naming
 
 The plugin is `hearthglass.nvim`; the collection is the Hearthglass family.
-Every theme has a glass name: Hearthglass, Stained, Flambe, Cranberry,
-Seaglass, Smoked, Frosted, Cathedral and Leaded. Keys are lowercase, `-light`
-selects the light face, and file stems and KDE package IDs use the key. For
-example `colors/frosted.lua`, `kitty/frosted.conf`, `zed/frosted.json` and
-`org.hearthglass.frosted.desktop`.
+Every display name ends in Glass, and every key ends in `glass`. The names are
+Hearthglass, Stained Glass, Flame Glass, Cranberry Glass, Sea Glass, Smoked
+Glass, Frosted Glass, Cathedral Glass and Leaded Glass. Keys use no spaces,
+`-light` selects the light face, and file stems and KDE package IDs use the
+key. For example `colors/frostedglass.lua`, `kitty/frostedglass.conf`,
+`zed/frostedglass.json` and `org.hearthglass.frostedglass.desktop`.
 
 ```vim
 :colorscheme hearthglass
 :colorscheme hearthglass-light
 :colorscheme hearthglass-auto
 
-:colorscheme stained
-:colorscheme flambe
+:colorscheme stainedglass
+:colorscheme flameglass
 :colorscheme seaglass
-:colorscheme smoked
+:colorscheme smokedglass
 ```
 
 `hearthglass-auto` follows the desktop theme when KDE or GNOME settings are
@@ -79,7 +80,7 @@ available, then falls back to `background`.
 Switch theme without changing the current face:
 
 ```vim
-:HearthglassTheme leaded        " dark stays dark, light stays light
+:HearthglassTheme leadedglass        " dark stays dark, light stays light
 :HearthglassTheme               " list the family, with * on the active theme
 ```
 
@@ -104,7 +105,7 @@ The same API is available from Lua:
 ```lua
 local hearthglass = require('hearthglass')
 hearthglass.toggle()
-hearthglass.set_theme('cranberry')
+hearthglass.set_theme('cranberryglass')
 hearthglass.list()
 ```
 
@@ -182,7 +183,7 @@ require('lualine').setup {
 
 The repository also includes `hearthglass-light` under `lua/lualine/themes/`.
 Every theme in the family ships a lualine theme under its own key
-(`stained`, `flambe`, `seaglass`, ...), so `theme = vim.g.colors_name`
+(`stainedglass`, `flameglass`, `seaglass`, ...), so `theme = vim.g.colors_name`
 follows whichever colorscheme is active.
 
 ## Terminal (kitty)
@@ -209,17 +210,17 @@ Install the confs so the `kitten themes` CLI can find them:
 
 ```sh
 python3 kitty/hearthglass.py install          # every theme
-python3 kitty/hearthglass.py install --theme flambe
+python3 kitty/hearthglass.py install --theme flameglass
 ```
 
 The generated confs carry kitten metadata, so the picker shows readable names
-(`Hearthglass`, `Stained`, `Flambe`, `Seaglass`, and so on). Switch
+(`Hearthglass`, `Stained Glass`, `Flame Glass`, `Sea Glass`, and so on). Switch
 through the kitten CLI:
 
 ```sh
 kitten themes                    # interactive picker
-kitten themes "Cranberry"        # dark
-kitten themes "Cranberry Light"  # light
+kitten themes "Cranberry Glass"        # dark
+kitten themes "Cranberry Glass Light"  # light
 ```
 
 ### Apply live (day / night / toggle)
@@ -236,21 +237,21 @@ listen_on unix:/tmp/kitty
 python3 kitty/hearthglass.py night                  # original dark
 python3 kitty/hearthglass.py day                    # original light
 python3 kitty/hearthglass.py toggle                 # flip the theme's faces
-python3 kitty/hearthglass.py night --theme seaglass  # Seaglass, dark
-python3 kitty/hearthglass.py day --theme leaded      # Leaded, light
+python3 kitty/hearthglass.py night --theme seaglass      # Sea Glass, dark
+python3 kitty/hearthglass.py day --theme leadedglass     # Leaded Glass, light
 ```
 
 Or call the kitten CLI directly:
 
 ```sh
-kitten @ set-colors kitty/flambe.conf
+kitten @ set-colors kitty/seaglass.conf
 ```
 
 Each script command honors the same options as the colorscheme:
 
 ```sh
-python3 kitty/hearthglass.py day --theme cranberry --low-blue-light
-python3 kitty/hearthglass.py night --theme cathedral --colorblind deutan
+python3 kitty/hearthglass.py day --theme cranberryglass --low-blue-light
+python3 kitty/hearthglass.py night --theme cathedralglass --colorblind deutan
 ```
 
 Regenerate every conf from the palette (after changing a theme or options)
@@ -267,8 +268,8 @@ Neovim is available.
 ## Zed Editor
 
 Every theme in the family is available as a Zed Editor theme family, with
-matching day and night faces, for example `Hearthglass Cranberry Dark` and
-`Hearthglass Cranberry Light`. The theme files live at `zed/<key>.json`
+matching day and night faces, for example `Hearthglass Cranberry Glass Dark` and
+`Hearthglass Cranberry Glass Light`. The theme files live at `zed/<key>.json`
 (`zed/hearthglass.json` for the original) and are generated from
 `lua/hearthglass/themes.lua`, so Zed and Neovim always share one palette.
 
@@ -281,7 +282,7 @@ nvim --headless -l zed/build.lua --install
 Or copy a single family by hand:
 
 ```sh
-cp zed/cranberry.json ~/.config/zed/themes/cranberry.json
+cp zed/cranberryglass.json ~/.config/zed/themes/cranberryglass.json
 ```
 
 Then pick a family from Zed's theme picker (`zed: open theme picker`), or set
@@ -291,8 +292,8 @@ one in `settings.json`:
 {
   "theme": {
     "mode": "system",
-    "light": "Hearthglass Cranberry Light",
-    "dark": "Hearthglass Cranberry Dark"
+    "light": "Hearthglass Cranberry Glass Light",
+    "dark": "Hearthglass Cranberry Glass Dark"
   }
 }
 ```
@@ -330,9 +331,9 @@ icons, cursors, Kate theme and Alt+Tab switcher.
 
 ```sh
 ./kde/install.sh
-./kde/apply.sh cranberry dark
+./kde/apply.sh cranberryglass dark
 ./kde/apply.sh seaglass dark
-./kde/apply.sh flambe dark
+./kde/apply.sh flameglass dark
 ./kde/verify.sh
 ```
 

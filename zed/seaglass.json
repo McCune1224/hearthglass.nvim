@@ -1,11 +1,11 @@
 {
   "$schema": "https://zed.dev/schema/themes/v0.2.0.json",
   "author": "McCune1224",
-  "name": "Hearthglass Seaglass",
+  "name": "Hearthglass Sea Glass",
   "themes": [
     {
       "appearance": "dark",
-      "name": "Hearthglass Seaglass Dark",
+      "name": "Hearthglass Sea Glass Dark",
       "style": {
         "accents": [
           "#e08a6d",
@@ -399,7 +399,7 @@
     },
     {
       "appearance": "light",
-      "name": "Hearthglass Seaglass Light",
+      "name": "Hearthglass Sea Glass Light",
       "style": {
         "accents": [
           "#83331f",

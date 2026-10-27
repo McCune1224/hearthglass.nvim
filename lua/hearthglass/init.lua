@@ -7,8 +7,8 @@
 --   :colorscheme hearthglass-auto        -> original, follows the desktop
 --   :colorscheme seaglass                -> Seaglass, dark
 --   :colorscheme seaglass-light          -> Seaglass, light
---   :colorscheme flambe                  -> Flambe, dark
---   :HearthglassTheme cranberry          -> switch theme, keep the current face
+--   :colorscheme flameglass              -> Flame Glass, dark
+--   :HearthglassTheme cranberryglass     -> switch theme, keep the current face
 --   :HearthglassTheme                    -> list the family
 --   :HearthglassToggle                   -> flip dark <-> light, keep the theme
 --   :HearthglassSync                     -> re-read the desktop preference

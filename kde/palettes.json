@@ -1,5 +1,5 @@
 {
-  "cathedral": {
+  "cathedralglass": {
     "dark": {
       "base0": "#dcd7ba",
       "base1": "#a8a8a3",
@@ -68,10 +68,10 @@
       "syntax_type": "#5a3f8f",
       "yellow": "#7a5c1f"
     },
-    "name": "Cathedral",
+    "name": "Cathedral Glass",
     "tagline": "Ink black and cathedral light: lilac, peony, carp yellow, spring green."
   },
-  "cranberry": {
+  "cranberryglass": {
     "dark": {
       "base0": "#ecd8d5",
       "base1": "#c2a8a8",
@@ -140,10 +140,10 @@
       "syntax_type": "#8e2f45",
       "yellow": "#846020"
     },
-    "name": "Cranberry",
+    "name": "Cranberry Glass",
     "tagline": "Cranberry glass and plum shadow. A wine-dark rose that stays readable."
   },
-  "flambe": {
+  "flameglass": {
     "dark": {
       "base0": "#efdcd3",
       "base1": "#c8a9a1",
@@ -212,10 +212,10 @@
       "syntax_type": "#a0281f",
       "yellow": "#876528"
     },
-    "name": "Flambe",
+    "name": "Flame Glass",
     "tagline": "Ruby glass and vermilion fire. Hotter and redder than wine."
   },
-  "frosted": {
+  "frostedglass": {
     "dark": {
       "base0": "#e5e9f0",
       "base1": "#adb7c8",
@@ -284,7 +284,7 @@
       "syntax_type": "#286172",
       "yellow": "#7a641f"
     },
-    "name": "Frosted",
+    "name": "Frosted Glass",
     "tagline": "Frosted glass, polar blue-gray and aurora accents. Cold and soft."
   },
   "hearthglass": {
@@ -359,7 +359,7 @@
     "name": "Hearthglass",
     "tagline": "The original: amber hero, ivory ink, hearth ash."
   },
-  "leaded": {
+  "leadedglass": {
     "dark": {
       "base0": "#d3c6aa",
       "base1": "#a7a897",
@@ -428,7 +428,7 @@
       "syntax_type": "#465f30",
       "yellow": "#7a5c1f"
     },
-    "name": "Leaded",
+    "name": "Leaded Glass",
     "tagline": "Leaded glass, forest shadow, cream light, autumn orange and river aqua."
   },
   "seaglass": {
@@ -500,10 +500,10 @@
       "syntax_type": "#83331f",
       "yellow": "#7b4a0d"
     },
-    "name": "Seaglass",
+    "name": "Sea Glass",
     "tagline": "Sea glass, coral light and a deep teal shadow."
   },
-  "smoked": {
+  "smokedglass": {
     "dark": {
       "base0": "#e7e7e4",
       "base1": "#bcbdbd",
@@ -572,10 +572,10 @@
       "syntax_type": "#8a4c0e",
       "yellow": "#4d5054"
     },
-    "name": "Smoked",
+    "name": "Smoked Glass",
     "tagline": "Smoked glass and one warm accent. Quiet code, clear cursor."
   },
-  "stained": {
+  "stainedglass": {
     "dark": {
       "base0": "#ebdbb2",
       "base1": "#c5b598",
@@ -644,7 +644,7 @@
       "syntax_type": "#9b3202",
       "yellow": "#96600f"
     },
-    "name": "Stained",
+    "name": "Stained Glass",
     "tagline": "Gruvbox bones, stained-glass fire. Retro warmth, hotter orange."
   }
 }

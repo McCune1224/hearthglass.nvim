@@ -1,19 +1,19 @@
 key	face	lnf	scheme	plasma	decoration	icons	cursors	wallpaper	kate	name
 hearthglass	light	org.hearthglass.hearthglass.desktop	HearthglassLight	hearthglass	Hearthglass	hearthglass-icons	hearthglass-cursors	Hearthglass	Hearthglass Light	Hearthglass
 hearthglass	dark	org.hearthglass.hearthglassdark.desktop	HearthglassDark	hearthglass-dark	HearthglassDark	hearthglass-icons	hearthglass-cursors	HearthglassDark	Hearthglass Dark	Hearthglass Dark
-stained	light	org.hearthglass.stained.desktop	StainedLight	stained	Stained	stained-icons	hearthglass-cursors	Stained	Stained Light	Stained
-stained	dark	org.hearthglass.staineddark.desktop	StainedDark	stained-dark	StainedDark	stained-icons	hearthglass-cursors	StainedDark	Stained Dark	Stained Dark
-flambe	light	org.hearthglass.flambe.desktop	FlambeLight	flambe	Flambe	flambe-icons	hearthglass-cursors	Flambe	Flambe Light	Flambe
-flambe	dark	org.hearthglass.flambedark.desktop	FlambeDark	flambe-dark	FlambeDark	flambe-icons	hearthglass-cursors	FlambeDark	Flambe Dark	Flambe Dark
-cranberry	light	org.hearthglass.cranberry.desktop	CranberryLight	cranberry	Cranberry	cranberry-icons	hearthglass-cursors	Cranberry	Cranberry Light	Cranberry
-cranberry	dark	org.hearthglass.cranberrydark.desktop	CranberryDark	cranberry-dark	CranberryDark	cranberry-icons	hearthglass-cursors	CranberryDark	Cranberry Dark	Cranberry Dark
-seaglass	light	org.hearthglass.seaglass.desktop	SeaglassLight	seaglass	Seaglass	seaglass-icons	hearthglass-cursors	Seaglass	Seaglass Light	Seaglass
-seaglass	dark	org.hearthglass.seaglassdark.desktop	SeaglassDark	seaglass-dark	SeaglassDark	seaglass-icons	hearthglass-cursors	SeaglassDark	Seaglass Dark	Seaglass Dark
-smoked	light	org.hearthglass.smoked.desktop	SmokedLight	smoked	Smoked	smoked-icons	hearthglass-cursors	Smoked	Smoked Light	Smoked
-smoked	dark	org.hearthglass.smokeddark.desktop	SmokedDark	smoked-dark	SmokedDark	smoked-icons	hearthglass-cursors	SmokedDark	Smoked Dark	Smoked Dark
-frosted	light	org.hearthglass.frosted.desktop	FrostedLight	frosted	Frosted	frosted-icons	hearthglass-cursors	Frosted	Frosted Light	Frosted
-frosted	dark	org.hearthglass.frosteddark.desktop	FrostedDark	frosted-dark	FrostedDark	frosted-icons	hearthglass-cursors	FrostedDark	Frosted Dark	Frosted Dark
-cathedral	light	org.hearthglass.cathedral.desktop	CathedralLight	cathedral	Cathedral	cathedral-icons	hearthglass-cursors	Cathedral	Cathedral Light	Cathedral
-cathedral	dark	org.hearthglass.cathedraldark.desktop	CathedralDark	cathedral-dark	CathedralDark	cathedral-icons	hearthglass-cursors	CathedralDark	Cathedral Dark	Cathedral Dark
-leaded	light	org.hearthglass.leaded.desktop	LeadedLight	leaded	Leaded	leaded-icons	hearthglass-cursors	Leaded	Leaded Light	Leaded
-leaded	dark	org.hearthglass.leadeddark.desktop	LeadedDark	leaded-dark	LeadedDark	leaded-icons	hearthglass-cursors	LeadedDark	Leaded Dark	Leaded Dark
+stainedglass	light	org.hearthglass.stainedglass.desktop	Stained Glass GlassLight	stainedglass	Stained Glass Glass	stainedglass-icons	hearthglass-cursors	Stained Glass Glass	Stained Glass Glass Light	Stained Glass
+stainedglass	dark	org.hearthglass.stainedglassdark.desktop	Stained Glass GlassDark	stainedglass-dark	Stained Glass GlassDark	stainedglass-icons	hearthglass-cursors	Stained Glass GlassDark	Stained Glass Glass Dark	Stained Glass Dark
+flameglass	light	org.hearthglass.flameglass.desktop	Flame GlassLight	flameglass	Flame Glass	flameglass-icons	hearthglass-cursors	Flame Glass	Flame Glass Light	Flame Glass
+flameglass	dark	org.hearthglass.flameglassdark.desktop	Flame GlassDark	flameglass-dark	Flame GlassDark	flameglass-icons	hearthglass-cursors	Flame GlassDark	Flame Glass Dark	Flame Glass Dark
+cranberryglass	light	org.hearthglass.cranberryglass.desktop	Cranberry Glass GlassLight	cranberryglass	Cranberry Glass Glass	cranberryglass-icons	hearthglass-cursors	Cranberry Glass Glass	Cranberry Glass Glass Light	Cranberry Glass
+cranberryglass	dark	org.hearthglass.cranberryglassdark.desktop	Cranberry Glass GlassDark	cranberryglass-dark	Cranberry Glass GlassDark	cranberryglass-icons	hearthglass-cursors	Cranberry Glass GlassDark	Cranberry Glass Glass Dark	Cranberry Glass Dark
+seaglass	light	org.hearthglass.seaglass.desktop	Sea GlassLight	seaglass	Sea Glass	seaglass-icons	hearthglass-cursors	Sea Glass	Sea Glass Light	Sea Glass
+seaglass	dark	org.hearthglass.seaglassdark.desktop	Sea GlassDark	seaglass-dark	Sea GlassDark	seaglass-icons	hearthglass-cursors	Sea GlassDark	Sea Glass Dark	Sea Glass Dark
+smokedglass	light	org.hearthglass.smokedglass.desktop	Smoked Glass GlassLight	smokedglass	Smoked Glass Glass	smokedglass-icons	hearthglass-cursors	Smoked Glass Glass	Smoked Glass Glass Light	Smoked Glass
+smokedglass	dark	org.hearthglass.smokedglassdark.desktop	Smoked Glass GlassDark	smokedglass-dark	Smoked Glass GlassDark	smokedglass-icons	hearthglass-cursors	Smoked Glass GlassDark	Smoked Glass Glass Dark	Smoked Glass Dark
+frostedglass	light	org.hearthglass.frostedglass.desktop	Frosted Glass GlassLight	frostedglass	Frosted Glass Glass	frostedglass-icons	hearthglass-cursors	Frosted Glass Glass	Frosted Glass Glass Light	Frosted Glass
+frostedglass	dark	org.hearthglass.frostedglassdark.desktop	Frosted Glass GlassDark	frostedglass-dark	Frosted Glass GlassDark	frostedglass-icons	hearthglass-cursors	Frosted Glass GlassDark	Frosted Glass Glass Dark	Frosted Glass Dark
+cathedralglass	light	org.hearthglass.cathedralglass.desktop	Cathedral Glass GlassLight	cathedralglass	Cathedral Glass Glass	cathedralglass-icons	hearthglass-cursors	Cathedral Glass Glass	Cathedral Glass Glass Light	Cathedral Glass
+cathedralglass	dark	org.hearthglass.cathedralglassdark.desktop	Cathedral Glass GlassDark	cathedralglass-dark	Cathedral Glass GlassDark	cathedralglass-icons	hearthglass-cursors	Cathedral Glass GlassDark	Cathedral Glass Glass Dark	Cathedral Glass Dark
+leadedglass	light	org.hearthglass.leadedglass.desktop	Leaded Glass GlassLight	leadedglass	Leaded Glass Glass	leadedglass-icons	hearthglass-cursors	Leaded Glass Glass	Leaded Glass Glass Light	Leaded Glass
+leadedglass	dark	org.hearthglass.leadedglassdark.desktop	Leaded Glass GlassDark	leadedglass-dark	Leaded Glass GlassDark	leadedglass-icons	hearthglass-cursors	Leaded Glass GlassDark	Leaded Glass Glass Dark	Leaded Glass Dark
