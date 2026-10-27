@@ -502,9 +502,6 @@ def build_lnf(theme: dict, dark: bool, c: dict, scheme_path: Path) -> None:
     (contents / "defaults").write_text(f"""[Wallpaper]
 Image={wallpaper}
 
-[kcminputrc][Mouse]
-cursorTheme={theme['cursors']}
-
 [kdeglobals][General]
 ColorScheme={scheme_name}
 
@@ -686,28 +683,6 @@ def build_icons(theme: dict) -> None:
     (dst / "index.theme").write_text(index)
 
 
-def build_cursors() -> None:
-    """One neutral cursor set, as Clay ships one for both faces."""
-    dest = PAYLOAD / "icons" / SHARED["cursors"]
-    paper = face(PALETTES["hearthglass"]["light"], False)
-    bright = face(PALETTES["hearthglass"]["dark"], True)
-    # Dark body, light edge like Clay, with the dark face's vivid accents so
-    # the busy wheel stays legible on both wallpapers.
-    mapping = {
-        "#333": paper["fg"], "#333333": paper["fg"], "#0d0d0d": paper["fg"],
-        "#fff": paper["bg"], "#ffffff": paper["bg"],
-        "#46a7ac": bright["accent"], "#d4497f": bright["terracotta"],
-        "#3daee9": bright["accent"], "#ed1515": bright["red"], "#f67400": bright["terracotta"],
-        "#18c087": bright["green"], "#11d116": bright["green"],
-    }
-    run_tool("gen_cursors.py", {
-        "HG_CURSORS_DST": str(dest),
-        "HG_CURSORS_PALETTE": json.dumps(mapping),
-        "HG_CURSOR_NAME": SHARED["cursors"],
-        "HG_CURSOR_LABEL": "Hearthglass",
-    })
-
-
 def build_tabbox() -> None:
     dst = PAYLOAD / "kwin" / "tabbox" / SHARED["tabbox"]
     shutil.copytree(TEMPLATES / "kwin" / "tabbox" / "clay_grid", dst)
@@ -752,18 +727,16 @@ def main() -> None:
                 theme["plasma_dark"] if dark else theme["plasma"],
                 theme["decoration_dark"] if dark else theme["decoration"],
                 theme["icons"],
-                SHARED["cursors"],
                 theme["wallpaper_dark"] if dark else theme["wallpaper"],
                 theme["kate_dark"] if dark else theme["kate"],
                 theme["name"] + (" Dark" if dark else ""),
             ]))
 
     print("== shared")
-    build_cursors()
     build_tabbox()
 
     header = ["key", "face", "lnf", "scheme", "plasma", "decoration", "icons",
-              "cursors", "wallpaper", "kate", "name"]
+              "wallpaper", "kate", "name"]
     (ROOT / "themes.tsv").write_text("\t".join(header) + "\n" + "\n".join(rows) + "\n")
     print(f"\nwrote {len(rows)} global themes to {PAYLOAD}")
 

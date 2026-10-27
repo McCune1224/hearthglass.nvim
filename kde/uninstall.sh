@@ -16,7 +16,7 @@ kwriteconfig6 --file kwinrc --group org.kde.kdecoration2 --key theme __aurorae__
 kwriteconfig6 --file kwinrc --group TabBox --key LayoutName Breeze 2>/dev/null || true
 kwriteconfig6 --file ksplashrc --group KSplash --key Theme org.kde.breeze.desktop 2>/dev/null || true
 
-while IFS=$'\t' read -r key face lnf scheme plasma decoration icons cursors wallpaper kate name; do
+while IFS=$'\t' read -r key face lnf scheme plasma decoration icons wallpaper kate name; do
   [ "$key" = "key" ] && continue
   [ -z "$key" ] && continue
   rm -rf "${data_home:?}/plasma/look-and-feel/$lnf"
@@ -27,12 +27,20 @@ while IFS=$'\t' read -r key face lnf scheme plasma decoration icons cursors wall
   rm -f "${data_home:?}/org.kde.syntax-highlighting/themes/${key}-${face}.theme"
 done < "$here/themes.tsv"
 
-while IFS=$'\t' read -r _key _face _lnf _scheme _plasma _decoration icons _cursors _wallpaper _kate _name; do
+while IFS=$'\t' read -r _key _face _lnf _scheme _plasma _decoration icons _wallpaper _kate _name; do
   [ "$_key" = "key" ] && continue
   [ -z "$icons" ] && continue
   rm -rf "${data_home:?}/icons/$icons"
 done < "$here/themes.tsv"
+# The cursor theme was retired; drop it from older installs and put the
+# pointer back on Breeze if it still points there.
 rm -rf "${data_home:?}/icons/hearthglass-cursors"
+if command -v kreadconfig6 >/dev/null 2>&1 && command -v kwriteconfig6 >/dev/null 2>&1; then
+  current_cursor="$(kreadconfig6 --file kcminputrc --group Mouse --key cursorTheme 2>/dev/null || true)"
+  if [ "$current_cursor" = "hearthglass-cursors" ]; then
+    kwriteconfig6 --file kcminputrc --group Mouse --key cursorTheme breeze_cursors --notify || true
+  fi
+fi
 rm -rf "${data_home:?}/kwin/tabbox/hearthglass_grid"
 
 if command -v kbuildsycoca6 >/dev/null 2>&1; then

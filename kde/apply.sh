@@ -21,7 +21,7 @@ if [ -z "$row" ]; then
   exit 2
 fi
 
-IFS=$'\t' read -r _key _face lnf scheme plasma decoration icons cursors wallpaper kate name <<<"$row"
+IFS=$'\t' read -r _key _face lnf scheme plasma decoration icons wallpaper kate name <<<"$row"
 
 test -d "$data_home/plasma/look-and-feel/$lnf" || {
   echo "$name is not installed in $data_home." >&2
@@ -52,12 +52,6 @@ kwriteconfig6 --file kwinrc --group org.kde.kdecoration2 --key library org.kde.k
 kwriteconfig6 --file kwinrc --group org.kde.kdecoration2 --key theme "__aurorae__svg__$decoration"
 kwriteconfig6 --file kwinrc --group TabBox --key LayoutName hearthglass_grid
 kwriteconfig6 --file plasmarc --group Theme --key name "$plasma"
-
-if command -v plasma-apply-cursortheme >/dev/null 2>&1; then
-  plasma-apply-cursortheme "$cursors" >/dev/null || true
-else
-  kwriteconfig6 --file kcminputrc --group Mouse --key cursorTheme "$cursors" --notify
-fi
 
 # Kate/KWrite: the matching hearthglass syntax theme.
 for rc in katerc kwriterc; do
@@ -105,7 +99,6 @@ echo "  Global Theme:  $lnf"
 echo "  Color Scheme:  $scheme"
 echo "  Plasma Style:  $plasma"
 echo "  Icons:         $icons"
-echo "  Cursors:       $cursors"
 echo "  Decoration:    $decoration (Aurorae)"
 echo "  Wallpaper:     $wallpaper"
 echo "  Editor theme:  $kate"

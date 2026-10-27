@@ -2,9 +2,9 @@
 
 Full global themes for Plasma 6, built from every hearthglass palette and
 shaped after [Clay](https://github.com/arttvad9r/clay-kde-theme) by Artt: paper
-surfaces, hairline outlines, a single restrained accent, and the same
-component set. Light and dark are separate Global Themes, exactly as Clay
-ships them.
+surfaces, hairline outlines, a single restrained accent, and most of the same
+component set — the cursor theme is dropped. Light and dark are separate Global
+Themes, exactly as Clay ships them.
 
 | Family | Light Global Theme | Dark Global Theme |
 | --- | --- | --- |
@@ -34,7 +34,6 @@ Shared across the family:
 
 - nine icon themes (`hearthglass-icons`, `stainedglass-icons`, ...,
   `leadedglass-icons`), one per palette, inheriting Breeze
-- one cursor theme (`hearthglass-cursors`), like Clay's single cursor set
 - one Alt+Tab switcher (`hearthglass_grid`)
 
 `apply.sh` also installs the repository's kitty themes (`kitty/<key>.conf` and
@@ -56,8 +55,8 @@ python3 kde/build.py
 
 `kde/palettes.json` is the exported palette snapshot; `kde/build.py` writes
 `kde/payload/` and `kde/themes.tsv`. Build requirements: Python 3, Neovim (for
-the export), ImageMagick with the librsvg delegate, and the Breeze icon and
-cursor sources (`breeze-icons`, `breeze_cursors`).
+the export), ImageMagick with the librsvg delegate, and the Breeze icon
+sources (`breeze-icons`).
 
 To add another family, append it to `kde/themes.json`; the export reads the
 theme order from `lua/hearthglass/themes.lua`, then rebuild.
@@ -83,7 +82,7 @@ is backed up to `hearthglass-kde-backup-<timestamp>`.
 ```
 
 Or pick the Global Theme in System Settings → Colors & Themes → Global Theme.
-The colour scheme, Plasma style, icons, cursors, decoration, wallpaper, splash,
+The colour scheme, Plasma style, icons, decoration, wallpaper, splash,
 Kate theme and window switcher are all set by the script.
 
 When `~/.config/kitty` exists, `apply.sh` also installs the same family's kitty

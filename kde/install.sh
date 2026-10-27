@@ -39,6 +39,18 @@ for rel in "${targets[@]}"; do
   cp -a "$payload/$rel" "$data_home/$rel"
 done
 
+# Drop the retired cursor theme from older installs, and stop pointing at it.
+if [ -d "$data_home/icons/hearthglass-cursors" ]; then
+  rm -rf "$data_home/icons/hearthglass-cursors"
+  echo "Removed the retired hearthglass cursor theme."
+  if command -v kreadconfig6 >/dev/null 2>&1 && command -v kwriteconfig6 >/dev/null 2>&1; then
+    if [ "$(kreadconfig6 --file kcminputrc --group Mouse --key cursorTheme 2>/dev/null || true)" = "hearthglass-cursors" ]; then
+      kwriteconfig6 --file kcminputrc --group Mouse --key cursorTheme breeze_cursors --notify || true
+      echo "Cursor theme reset to Breeze."
+    fi
+  fi
+fi
+
 if command -v kbuildsycoca6 >/dev/null 2>&1; then
   kbuildsycoca6 --noincremental >/dev/null 2>&1 || true
 fi

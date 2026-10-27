@@ -15,7 +15,7 @@ check_file() {
   fi
 }
 
-while IFS=$'\t' read -r key face lnf scheme plasma decoration icons cursors wallpaper kate name; do
+while IFS=$'\t' read -r key face lnf scheme plasma decoration icons wallpaper kate name; do
   [ "$key" = "key" ] && continue
   [ -z "$key" ] && continue
   check_file "$data_home/plasma/look-and-feel/$lnf/metadata.json"
@@ -27,7 +27,6 @@ while IFS=$'\t' read -r key face lnf scheme plasma decoration icons cursors wall
   check_file "$data_home/org.kde.syntax-highlighting/themes/${key}-${face}.theme"
 done < "$here/themes.tsv"
 
-check_file "$data_home/icons/hearthglass-cursors/index.theme"
 check_file "$data_home/kwin/tabbox/hearthglass_grid/metadata.json"
 
 for f in "$data_home"/plasma/desktoptheme/*/widgets/*.svgz; do

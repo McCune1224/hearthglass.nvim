@@ -1,7 +1,6 @@
 {
   "shared": {
-    "tabbox": "hearthglass_grid",
-    "cursors": "hearthglass-cursors"
+    "tabbox": "hearthglass_grid"
   },
   "themes": [
     {
@@ -16,7 +15,6 @@
       "plasma": "hearthglass",
       "plasma_dark": "hearthglass-dark",
       "icons": "hearthglass-icons",
-      "cursors": "hearthglass-cursors",
       "wallpaper": "Hearthglass",
       "wallpaper_dark": "HearthglassDark",
       "decoration": "Hearthglass",
@@ -36,7 +34,6 @@
       "plasma": "stainedglass",
       "plasma_dark": "stainedglass-dark",
       "icons": "stainedglass-icons",
-      "cursors": "hearthglass-cursors",
       "wallpaper": "Stained Glass Glass",
       "wallpaper_dark": "Stained Glass GlassDark",
       "decoration": "Stained Glass Glass",
@@ -56,7 +53,6 @@
       "plasma": "flameglass",
       "plasma_dark": "flameglass-dark",
       "icons": "flameglass-icons",
-      "cursors": "hearthglass-cursors",
       "wallpaper": "Flame Glass",
       "wallpaper_dark": "Flame GlassDark",
       "decoration": "Flame Glass",
@@ -76,7 +72,6 @@
       "plasma": "cranberryglass",
       "plasma_dark": "cranberryglass-dark",
       "icons": "cranberryglass-icons",
-      "cursors": "hearthglass-cursors",
       "wallpaper": "Cranberry Glass Glass",
       "wallpaper_dark": "Cranberry Glass GlassDark",
       "decoration": "Cranberry Glass Glass",
@@ -96,7 +91,6 @@
       "plasma": "seaglass",
       "plasma_dark": "seaglass-dark",
       "icons": "seaglass-icons",
-      "cursors": "hearthglass-cursors",
       "wallpaper": "Sea Glass",
       "wallpaper_dark": "Sea GlassDark",
       "decoration": "Sea Glass",
@@ -116,7 +110,6 @@
       "plasma": "smokedglass",
       "plasma_dark": "smokedglass-dark",
       "icons": "smokedglass-icons",
-      "cursors": "hearthglass-cursors",
       "wallpaper": "Smoked Glass Glass",
       "wallpaper_dark": "Smoked Glass GlassDark",
       "decoration": "Smoked Glass Glass",
@@ -136,7 +129,6 @@
       "plasma": "frostedglass",
       "plasma_dark": "frostedglass-dark",
       "icons": "frostedglass-icons",
-      "cursors": "hearthglass-cursors",
       "wallpaper": "Frosted Glass Glass",
       "wallpaper_dark": "Frosted Glass GlassDark",
       "decoration": "Frosted Glass Glass",
@@ -156,7 +148,6 @@
       "plasma": "cathedralglass",
       "plasma_dark": "cathedralglass-dark",
       "icons": "cathedralglass-icons",
-      "cursors": "hearthglass-cursors",
       "wallpaper": "Cathedral Glass Glass",
       "wallpaper_dark": "Cathedral Glass GlassDark",
       "decoration": "Cathedral Glass Glass",
@@ -176,7 +167,6 @@
       "plasma": "leadedglass",
       "plasma_dark": "leadedglass-dark",
       "icons": "leadedglass-icons",
-      "cursors": "hearthglass-cursors",
       "wallpaper": "Leaded Glass Glass",
       "wallpaper_dark": "Leaded Glass GlassDark",
       "decoration": "Leaded Glass Glass",
