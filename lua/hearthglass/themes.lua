@@ -22,18 +22,20 @@
 -- so every theme stays structurally identical.
 --
 -- The family spans amber, vermilion, wine, coral, smoked gray, polar blue-gray,
--- ink black and forest green. Every theme carries a glass name. Flame Glass,
--- Cranberry Glass and Sea Glass keep the original red, wine and coral
--- palettes; Stained Glass, Smoked Glass, Frosted Glass, Cathedral Glass and
--- Leaded Glass add the newer directions. Smoked Glass is deliberately minimal,
--- with a single warm accent and gray syntax support. The others keep several
--- unrelated accents in play so their highlight patterns stay colorful. Only
--- `seaglass` is anchored to the
--- photographed petal reference: deep teal shadow
--- #0e2426, coral petal #e08a6d, cyan rim #5fd6d2, amber pollen #d98f3a and
--- bone highlight #f3ded0. Its dark face uses those anchors directly; the light
--- face keeps each hue angle and shifts lightness only as far as WCAG contrast
--- requires.
+-- ink black and forest green. Every theme carries a glass name. Stained Glass,
+-- Smoked Glass, Frosted Glass, Cathedral Glass and Leaded Glass add the newer
+-- directions; Smoked Glass is deliberately minimal, with a single warm accent
+-- and gray syntax support, while the others keep several unrelated accents in
+-- play so their highlight patterns stay colorful.
+--
+-- Palette ancestors, matched color for color: Gruvbox (stainedglass), Nord
+-- (frostedglass), Kanagawa (cathedralglass) and Everforest (leadedglass).
+-- Hearthglass itself follows deepwhite's structure and Ember's direction. Only
+-- `seaglass` is anchored to a photographed petal reference instead: deep teal
+-- shadow #0e2426, coral petal #e08a6d, cyan rim #5fd6d2, amber pollen #d98f3a
+-- and bone highlight #f3ded0. Its dark face uses those anchors directly; the
+-- light face keeps each hue angle and shifts lightness only as far as WCAG
+-- contrast requires.
 -- ============================================================================
 
 local M = {}
